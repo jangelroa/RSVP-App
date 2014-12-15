@@ -13,6 +13,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :public_code
       t.string :private_code
       t.boolean :public
+      t.references :user
 
       t.timestamps
     end
