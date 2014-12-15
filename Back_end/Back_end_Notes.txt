@@ -1,0 +1,4 @@
+    rails new RSBP_Backend_App -Tbd postgresql
+    cd RSBP_Backend_App
+
+
