@@ -1,6 +1,10 @@
+_Create the app
+
     rails new RSBP_Backend_App -Tbd postgresql
 
     cd RSBP_Backend_App
+
+_Create the Models
 
     rails g scaffold User firstname lastname email username password password_digest reset_token picture_url auth_token
 
@@ -9,6 +13,28 @@
     rails g scaffold Attendance
 
     rails g scaffold Event_new title body:text
+_git commit -m "Generated User, Event, Attendance, Event_new Models"
+
+_git commit -m "Set associatioons between Models"
+
+_git commit -m "Set the references (foreign keys) in the migrations"
+
+_git commit -m "
+    _Comment all the "format.html" lines in all controllers
+    _Added 'protect_from_forgery with: :null_session' in app/controllers/application_controller.rb
+    _In the Gemfile, added:
+        gem 'rack-cors', :require => 'rack/cors'
+    _In config/application.rb added:
+
+        config.middleware.insert_before 0, "Rack::Cors" do
+          allow do
+            origins '*'
+            resource '*', :headers => :any, :methods => [:get, :post, :options]
+          end
+        end
+
+    "
+
 
 
 
