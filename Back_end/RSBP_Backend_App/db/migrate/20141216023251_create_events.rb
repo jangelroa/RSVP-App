@@ -12,7 +12,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :event_picture_url
       t.string :public_code
       t.string :private_code
-      t.boolean :public
+      t.boolean :publico
       t.references :user
 
       t.timestamps

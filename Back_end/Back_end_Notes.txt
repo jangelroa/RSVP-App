@@ -49,6 +49,15 @@ _git commit -m "
         rake db:create
         rake db:migrate
     _db/schema.rb has been created
+    _bundle install:
+        bundle
+    _I had to roll back the Event scafolld because I used the key "public" and it's a keyword, so I changed it to "publico" (Spanish translation):
+        rails destroy scaffold Event
+        rails g scaffold Event title public_description:text private_description:text date:date time:time location 'price:decimal{7,2}' max_attendances:integer event_picture_url public_code private_code publico:boolean
+        rake db:drop
+        rake db:create
+        rake db:migrate
     "
+
 
 
