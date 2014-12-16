@@ -21,7 +21,8 @@ _git commit -m "Set the references (foreign keys) in the migrations"
 
 _git commit -m "
     _Comment all the "format.html" lines in all controllers
-    _Added 'protect_from_forgery with: :null_session' in app/controllers/application_controller.rb
+    _In app/controllers/application_controller.rb added:
+        protect_from_forgery with: :null_session
     _In the Gemfile, added:
         gem 'rack-cors', :require => 'rack/cors'
     _In config/application.rb added:
@@ -32,10 +33,18 @@ _git commit -m "
             resource '*', :headers => :any, :methods => [:get, :post, :options]
           end
         end
-
     "
-
-
+_git commit -m "
+    _In app/controllers/application_controller.rb added:
+        protect_from_forgery with: :exception,
+        if: Proc.new { |c| c.request.format =~ %r{application/json} }
+    _Changed the routes to:
+          resources :event_news, except: [:new, :edit]
+          resources :attendances, except: [:new, :edit]
+          resources :users, except: [:new, :edit] do
+            resources :events, except: [:new, :edit]
+          end
+    "
 
 
 
