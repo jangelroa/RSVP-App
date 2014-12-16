@@ -91,3 +91,6 @@ http://railscasts.com/episodes/409-active-model-serializers?view=asciicast
       end
     end
 
+SecureRandom.hex
+ => "68293e7d7efa30c74d3af809e745803b"
+

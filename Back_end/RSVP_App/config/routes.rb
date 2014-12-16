@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :events
 
-  resources :event_news, except: [:new, :edit], constraints: { subdomain: "api"}
-  resources :attendances, except: [:new, :edit], constraints: { subdomain: "api"}
-  resources :users, except: [:new, :edit], constraints: { subdomain: "api"}
-  resources :events, except: [:new, :edit], constraints: { subdomain: "api"}
-
+  constraints subdomain: "api" do
+    resources :event_news, except: [:new, :edit]
+    resources :attendances, except: [:new, :edit]
+    resources :users, except: [:new, :edit]
+    resources :events, except: [:new, :edit]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

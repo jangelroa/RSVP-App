@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :attending_events, through: :attendances, source: :event
 
+  validates :username, uniqueness: { case_sensitive: false }
+
   before_create :set_auth_token
 
   private

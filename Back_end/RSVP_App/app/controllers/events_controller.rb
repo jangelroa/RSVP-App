@@ -3,10 +3,39 @@ class EventsController < ApplicationController
 
   # GET /events
   # GET /events.json
+  # def index
+  #   @events = Event.all
+  #   # format.json { render json: @events, status: :ok  }
+  # end
+
+
+
+
+
+
   def index
-    @events = Event.all
-    # format.json { render json: @events, status: :ok  }
+    # @events = Event.where(publico: false).order(created_at: :desc)
+    @events = Event.where(publico: false)
+    event_data = []
+
+    @events.each do |event|
+      # user = User.select(:id, :firstname, :lastname).find(post.user_id)
+
+      event_data << { event_picture_url: event.event_picture_url, title: event.title, public_description: event.public_description, location: event.location }
+    end
+
+    render :json => event_data
   end
+
+
+
+
+
+
+
+
+
+
 
   # GET /events/1
   # GET /events/1.json
@@ -29,10 +58,10 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        # format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
+        # format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +72,10 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        # format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
-        format.html { render :edit }
+        # format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +86,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      # format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
