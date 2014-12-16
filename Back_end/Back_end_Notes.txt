@@ -45,7 +45,10 @@ _git commit -m "
             resources :events, except: [:new, :edit]
           end
     "
-
-
+_git commit -m "
+        rake db:create
+        rake db:migrate
+    _db/schema.rb has been created
+    "
 
 
