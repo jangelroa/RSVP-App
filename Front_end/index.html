@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
   <title>RSVP</title>
 </head>
@@ -161,6 +161,7 @@
             <li class="ui-field-contain">
               <label for="select-choice-1" class="select">Events in another city</label>
               <select name="select-choice-1" id="select-choice-1">
+                <option value="newyork">San Francisco</option>
                 <option value="newyork">New York</option>
                 <option value="chicago">Chicago</option>
                 <option value="miami">Miami</option>
@@ -177,7 +178,7 @@
     <div data-role="navbar">
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -196,33 +197,33 @@
   <div data-role="content">
     <ul id="event-list-items" data-role="listview" data-filter="true">
       <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#priv-individual-event" data-icon="carat-r">
           <img src="images/legs.jpg">
-          <h3> Name of Event </h3>
+          <h3> Name of Private Event- with Code </h3>
           <p>Description text</p>
         </a>
       </li>
 
       <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#pub-individual-event" data-icon="carat-r">
           <img src="images/red_lips.jpg">
-          <h3> Name of Event </h3>
+          <h3> Name of Event (public view) </h3>
           <p>Description text</p>
         </a>
       </li>
       
        <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#priv-individual-event" data-icon="carat-r">
           <img src="images/legs.jpg">
-          <h3> Name of Event </h3>
+          <h3> Name of Private Event (with Code) </h3>
           <p>Description text</p>
         </a>
       </li>
 
       <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#pub-individual-event" data-icon="carat-r">
           <img src="images/red_lips.jpg">
-          <h3> Name of Event </h3>
+          <h3> Name of Event (public view) </h3>
           <p>Description text</p>
         </a>
       </li>
@@ -232,7 +233,7 @@
     <div data-role="navbar" >
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -241,19 +242,136 @@
 </div>
 <!--/Event List Page-->
 
-<!-- Individual Event-Code View -->
-<div data-role="page" id="individual-event">
+<!--RSVP Guest List Page-->
+<div data-role="page" id="rsvpd-guests">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
-    <h1>Here is your event!</h1>
+    <h1>RSVP'd Guest List</h1>
+  </div>
+  <div data-role="content">
+    <ul id="event-list-items" data-role="listview">
+      <li>
+          <img src="images/billgates.jpg">
+          <h3> Name of User </h3>
+      </li>
+
+       <li>
+          <img src="images/markzuckerberg.jpg">
+          <h3> Name of User </h3>
+      </li>
+       <li>
+          <img src="images/pamelaanderson.jpg">
+          <h3> Name of User </h3>
+      </li>
+
+       <li>
+          <img src="images/scarlettjo.jpg">
+          <h3> Name of User </h3>
+      </li>
+    </ul>
+  </div>
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--close RSVP Guest List Page-->
+
+<!-- Private Individual Event-Code View -->
+<div data-role="page" id="priv-individual-event">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h1>Yes, please come....</h1>
   </div>
  
-  <div data-role="content">
-  
-  </div>
- </div>
 
-<!-- close Individual Event-Code View -->
+    <div role="main" class="ui-content">
+      <div class="ui-grid-a">
+        <h3> Event Name:  </h3>
+        <div class="ui-block-a"><img src="images/red_lips.jpg" style = width: 100px, height = 100px/></div>
+        <div class="ui-block-b"><strong>Hosted by: </strong> and text inside will wrap.</div>
+      </div>
+  </div>
+
+  <div role="main" class="ui-content">
+      <div class="ui-grid-a">
+        <div class="ui-block-a"><strong>Date: </strong> and text inside will wrap.</div>
+        <div class="ui-block-b"><strong>Time: </strong> and text inside will wrap.</div>
+      </div>
+  </div>
+    <div role="main" class="ui-content">
+      <h3> Description:  </h3>
+      <p> Here is a detailed description of the event.  This event is a ...Spectactular. Located in the heart of the heart of the heart of the city, we are throwing the biggest New Year's Eve Bash.  You will be blown away by the extravagance.  This is an invite only, private event.  The cost if $1000 and if you want to bring a guest, you must send me an email so that I can send your guest a code to RSVP.  The Max number of guests are 500 people. There will be free food, free drinks, free clothes, free shoes, free massages, free, free, free, free.  
+
+      There will also be a gigantic balloon drop!  Make sure you buy your tickets early.  The link to purchasing tickets is here:  http://eventbrite.com/crazy-ass party
+
+      See you soon!  Oh yes, clothes optional.  If you come naked, then you don't have to pay.  If you are too hairy and you think you will scare away people, then you may have to pay double! </p>
+
+    </div> 
+
+    <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I'm coming! </a>
+ 
+ <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- close Private Individual Event-Code View -->
+
+<!-- Public View of Individual Private Event -->
+<div data-role="page" id="pub-individual-event">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h1>Private Event</h1>
+  </div>
+ 
+
+    <div role="main" class="ui-content">
+      <div class="ui-grid-a">
+        <h3> Event Name:  </h3>
+        <div><img src="images/red_lips.jpg" style = width: 200px, height = 200px/></div>
+        
+      </div>
+  </div>
+
+  <div role="main" class="ui-content">
+      <div class="ui-grid-a">
+        <div class="ui-block-a"><strong>Date: </strong> PRIVATE</div>
+        <div class="ui-block-b"><strong>Time: </strong> PRIVATE</div>
+      </div>
+  </div>
+    <div role="main" class="ui-content">
+      <h3> Description:  </h3>
+      <p> Here is a short description of the event.  This event is a ...Spectactular. Located in the heart of the heart of the heart of the city, we are throwing the biggest New Year's Eve Bash.   </p>
+
+    </div> 
+
+    <a href="#message-host" data-role ="button" data-icon = "mail" data-iconpos = "right" data-theme = "b">CONTACT HOST for a code! </a>
+ 
+ <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- close Public View of Individual Private Event- -->
 
 <!-- Create Event View -->
 
@@ -306,6 +424,19 @@
       <input id="picture" type="text" placeholder="Picture" />
     </div>
   
+    <div role="main" class="ui-content">
+      <form>
+        <fieldset data-role="controlgroup">
+          <legend>Is your event...</legend>
+          <input type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
+          <label for="radio-choice-1"> Private </label>
+
+          <input type="radio" name="public" id="radio-choice-2" value="choice-2">
+          <label for="radio-choice-2">Public</label>
+
+        </fieldset>
+      </form>
+      </div>
     <div class="margin-top-20">
     
       <a href="#profile" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Create my event!</a>
@@ -318,7 +449,7 @@
     <div data-role="navbar" >
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -334,7 +465,7 @@
 <div data-role="page" id="edit-event">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
-    <h2>Edit Your Event: #### </h2>
+    <h2>View / Edit Event </h2>
   </div>
   <div data-role="content">
     <div class="bold">
@@ -380,19 +511,38 @@
       <input id="picture" type="text" placeholder="Picture" />
     </div>
   
-    <div class="margin-top-20">
-    
-      <a href="#user-profile" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Edit this event!</a>
-      <p> Guests will see update via RSVP App</p>
+    <div role="main" class="ui-content">
+    <form>
+      <fieldset data-role="controlgroup">
+        <legend>Is your event...</legend>
+        <input type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
+        <label for="radio-choice-1"> Private </label>
 
+        <input type="radio" name="public" id="radio-choice-2" value="choice-2">
+        <label for="radio-choice-2">Public</label>
+
+      </fieldset>
+    </form>
+    </div>
+    <div class="margin-top-20">
+
+    <a href="#user-profile
+       " data-role="button" data-theme="b" data-icon = "edit" data-iconpos = "right" data-theme = "b">Save Updated Event Details</a>
+      <p> Guests will see your this updated event in their RSVP App</p>
+    
+      <a href="#invite-guests" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
+
+      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVP'ed for this event?</a>
+
+      <a href="#wants-invite" data-role="button" data-theme="b" data-icon = "alert" data-iconpos = "right" data-theme = "b">Who wants to be invited?</a>
     </div>
   </div>
 
-  <div data-role="footer" data-position="fixed" data-theme="b">
+  <div data-role="footer" data-position="fixed">
     <div data-role="navbar" >
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -421,6 +571,10 @@
       <div class="ui-block-a"><strong>Email</strong> and text inside will wrap.</div>
       <div class="ui-block-b"><strong>Picture</strong> and text inside will wrap.</div>
     </div>
+
+    <div>  <a href="#user-profile
+       " data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Save Updated User Information </a>
+    </div>
   </div>
 
   <div data-role="content"> 
@@ -428,7 +582,7 @@
   <h3> Events Created by You </h3>
   <ul id="event-list-items" data-role="listview">
       <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#edit-event" data-icon="carat-r">
           <img src="images/legs.jpg">
           <h3> Name of Event </h3>
           <p>Description text</p>
@@ -436,7 +590,7 @@
       </li>
 
       <li>
-        <a href="#individual-event" data-icon="carat-r">
+        <a href="#edit-event" data-icon="carat-r">
           <img src="images/red_lips.jpg">
           <h3> Name of Event </h3>
           <p>Description text</p>
@@ -471,7 +625,7 @@
     <div data-role="navbar" >
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -479,6 +633,89 @@
   </div>
  </div>
 <!-- close User Profile View  -->
+
+<!-- Invite Guests View -->
+
+<div data-role="page" id="invite-guests">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h2>Invite Guests </h2>
+  </div>
+  <div role="main" class="ui-content">
+    <div>
+      <h3> Event Name...... </h3>
+    </div>
+    </div>
+     <div data-role="content"> 
+      <h3> Invite Guests here: (comma separated emails)</h3>
+    
+    <div class="margin-top-20">
+      <textarea type="text" placeholder="example1@email.com, example2@email.com, example3@gmail.com, example4@gmail.com"></textarea>
+    </div> 
+
+    </div>
+
+    <div data-role="content"> 
+      <h3> Message to your guests: </h3>
+    
+    <div class="margin-top-20">
+      <textarea type="text" placeholder="You are invited to the biggest bash of the century!  If you want more details, downloand the RSVP App and enter the code on the bottom of this email to RSVP to this event."></textarea>
+    </div> 
+
+    <div>
+    <a href="#user-profile" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Invite Guests Now!</a>
+    </div>
+
+    </div>
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- close Invite Guests View  -->
+
+<!-- Send Message to Host View -->
+
+<div data-role="page" id="message-host">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h2>Message to Host </h2>
+  </div>
+  <div role="main" class="ui-content">
+    <div>
+      <h3> Event Name...... </h3>
+    </div>
+    </div>
+
+    <div data-role="content"> 
+      <h3> Message to the Host </h3>
+    
+    <div class="margin-top-20">
+      <textarea type="text" placeholder="I would love to be a party of your awesome party!  Can you send me an invite with the code to this email address:  onetwothreefour@email.com" ></textarea>
+    </div>
+
+    <div>
+      <a href="#user-profile" data-role="button" data-theme="b" data-icon = "mail" data-iconpos = "right" data-theme = "b">Send Message to Host for Invite</a>
+    </div>
+    </div>
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Events</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- close Send Message to Host View  -->
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <!-- <script src="js/jqm-config.js"></script> -->
