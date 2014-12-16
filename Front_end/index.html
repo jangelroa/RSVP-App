@@ -61,30 +61,19 @@
               <li><input type="text" placeholder="Password"/></li>
               <li>Look up your event with a CODE</li>
               <li><input type="text" placeholder="Past your code here"/></li>
-              <li> <a href="#find-event" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Submit Login</a></li>
-                <!-- <input type="submit" value="Submit Button"> -->
+              <li> <a href="#find-events" data-role="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Login</a></li>
+                
             </ul>  
            
            <h3>Are you a New User?</h3> 
-           <a href="#new-user" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Sign Up Now!</a>       
+           <a href="#new-user" data-role ="button" data-icon = "user" data-iconpos = "right">Sign Up - if you dare!</a>       
     </div>
-  <!-- <div data-role="footer" data-position="fixed" data-theme="b">
+  <div data-role="footer" data-position="fixed" data-theme="b">
   
     <h1>The fun is about to begin...</h1>
   </div>
-</div> -->
+</div> 
 
- <div data-role="footer" data-position="fixed" data-theme="b">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-event" data-icon="search">Find Event</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 <!-- close User Login-->
 
 <!-- New User View -->
@@ -111,7 +100,7 @@
       Email
     </div>
     <div class="margin-top-20">
-      <input id="email" type="text" placeholder="Email" />
+      <input id="email" type="email" placeholder="Email" />
     </div>
     <div class="margin-top-20 bold">
       Username
@@ -123,13 +112,13 @@
       Password
     </div>
     <div class="margin-top-20">
-      <input id="password" type="tel" placeholder="Password" />
+      <input id="password" type="text"  placeholder="Password" />
     </div>
     <div class="margin-top-20 bold">
       Picture (optional)
     </div>
     <div class="margin-top-20">
-      <input id="picture" type="tel" placeholder="Picture" />
+      <input id="picture" type="text" placeholder="Picture" />
     </div>
   
     <div class="margin-top-20">
@@ -138,12 +127,15 @@
 
     </div>
   </div>
+</div>
   
 <!-- close New User View -->
 
-<div data-role="page" id="find-event">
+<!-- Find Events View -->
+
+<div data-role="page" id="find-events">
   <div data-role="header" data-theme="b">
-  <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h1>Find Your Event!</h1>
   </div>
  
@@ -153,7 +145,7 @@
 
               <li><input type="text" placeholder="Past your code here"/></li>
               <li> <a href="#event_coded_page" data-role ="button" data-icon = "carat-r" data-iconpos = "right">Submit Code</a></li>
-                <!-- <input type="submit" value="Submit Button"> -->
+                
 
             </ul>
             
@@ -185,7 +177,7 @@
     <div data-role="navbar">
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-event" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Event</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
@@ -203,31 +195,290 @@
   </div>
   <div data-role="content">
     <ul id="event-list-items" data-role="listview" data-filter="true">
-      <!--LOADER HERE-->
+      <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/legs.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/red_lips.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+      
+       <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/legs.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/red_lips.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
     </ul>
   </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
         <li><a href="#event-list" data-icon="bullets">Event List</a></li>
-        <li><a href="#find-event" data-icon="search">Find Event</a></li>
+        <li><a href="#find-events" data-icon="search">Find Event</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#add-event" data-icon="user">Profile</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
 </div>
 <!--/Event List Page-->
 
+<!-- Individual Event-Code View -->
+<div data-role="page" id="individual-event">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h1>Here is your event!</h1>
+  </div>
+ 
+  <div data-role="content">
+  
+  </div>
+ </div>
 
+<!-- close Individual Event-Code View -->
 
+<!-- Create Event View -->
 
+<div data-role="page" id="create-event">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h2>Create New Event </h2>
+  </div>
+  <div data-role="content">
+    <div class="bold">
+      Event Name
+    </div>
+    <div class="margin-top-20">
+      <input id="event_name" type="text" placeholder="Event Name" />
+    </div>
+    <div class="margin-top-20 bold">
+       Description (public view)
+    </div>
+    <div class="margin-top-20">
+      <textarea id="pub_desc" type="text" placeholder="Short Description (public view)"></textarea>
+    </div>
+    <div class="margin-top-20 bold">
+      Description (private view)
+    </div>
+    <div class="margin-top-20">
+      <textarea id="pub_desc" type="text" placeholder="Detailed Description (private view)"></textarea>
+    </div>
+    <div class="margin-top-20 bold">
+      Date of Event
+    </div>
+    <div class="margin-top-20">
+      <input id="date" type="text" placeholder="mm/dd/yyyy" />
+    </div>
+    <div class="margin-top-20 bold">
+      Time
+    </div>
+    <div class="margin-top-20">
+      <input id="time" type="text"  placeholder="00:00" />
+    </div>
+    <div class="margin-top-20 bold">
+      Max # of guests (optional)
+    </div>
+    <div class="margin-top-20">
+      <input id="guests" type="text"  placeholder="1000" />
+    </div>
+    <div class="margin-top-20 bold">
+      Picture (optional)
+    </div>
+    <div class="margin-top-20">
+      <input id="picture" type="text" placeholder="Picture" />
+    </div>
+  
+    <div class="margin-top-20">
+    
+      <a href="#profile" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Create my event!</a>
+      <p> Go to your PROFILE, to invite guests to this event </p>
 
+    </div>
+  </div>
 
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
 
+</div>
+  
+<!-- close Create Event View -->
 
+<!-- Edit Event View -->
 
+<div data-role="page" id="edit-event">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h2>Edit Your Event: #### </h2>
+  </div>
+  <div data-role="content">
+    <div class="bold">
+      Event Name
+    </div>
+    <div class="margin-top-20">
+      <input id="event_name" type="text" placeholder="Event Name" />
+    </div>
+    <div class="margin-top-20 bold">
+       Description (public view)
+    </div>
+    <div class="margin-top-20">
+      <textarea id="pub_desc" type="text" placeholder="Short Description (public view)"></textarea>
+    </div>
+    <div class="margin-top-20 bold">
+      Description (private view)
+    </div>
+    <div class="margin-top-20">
+      <textarea id="pub_desc" type="text" placeholder="Detailed Description (private view)"></textarea>
+    </div>
+    <div class="margin-top-20 bold">
+      Date of Event
+    </div>
+    <div class="margin-top-20">
+      <input id="date" type="text" placeholder="mm/dd/yyyy" />
+    </div>
+    <div class="margin-top-20 bold">
+      Time
+    </div>
+    <div class="margin-top-20">
+      <input id="time" type="text"  placeholder="00:00" />
+    </div>
+    <div class="margin-top-20 bold">
+      Max # of guests (optional)
+    </div>
+    <div class="margin-top-20">
+      <input id="guests" type="text"  placeholder="1000" />
+    </div>
+    <div class="margin-top-20 bold">
+      Picture (optional)
+    </div>
+    <div class="margin-top-20">
+      <input id="picture" type="text" placeholder="Picture" />
+    </div>
+  
+    <div class="margin-top-20">
+    
+      <a href="#user-profile" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Edit this event!</a>
+      <p> Guests will see update via RSVP App</p>
 
+    </div>
+  </div>
+
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<!-- close Edit Event View -->
+
+<!-- User Profile View -->
+
+<div data-role="page" id="user-profile">
+  <div data-role="header" data-theme="b">
+    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <h2>Your User Profile </h2>
+  </div>
+  <div role="main" class="ui-content">
+    <div class="ui-grid-a">
+      <h3> User Information </h3>
+      <div class="ui-block-a"><strong>First Name</strong> and text inside will wrap.</div>
+      <div class="ui-block-b"><strong>Last Name</strong> and text inside will wrap.</div>
+    </div>
+  </div>
+    <div role="main" class="ui-content">
+      <div class="ui-grid-a">
+      <div class="ui-block-a"><strong>Email</strong> and text inside will wrap.</div>
+      <div class="ui-block-b"><strong>Picture</strong> and text inside will wrap.</div>
+    </div>
+  </div>
+
+  <div data-role="content"> 
+
+  <h3> Events Created by You </h3>
+  <ul id="event-list-items" data-role="listview">
+      <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/legs.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#individual-event" data-icon="carat-r">
+          <img src="images/red_lips.jpg">
+          <h3> Name of Event </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+      </ul>
+      </div>
+      <div data-role="content"> 
+        <h3> Events that you are attending </h3>
+        <ul id="event-list-items" data-role="listview">
+            <li>
+              <a href="#individual-event" data-icon="carat-r">
+                <img src="images/legs.jpg">
+                <h3> Name of Event </h3>
+                <p>Description text</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="#individual-event" data-icon="carat-r">
+                <img src="images/red_lips.jpg">
+                <h3> Name of Event </h3>
+                <p>Description text</p>
+              </a>
+            </li>
+            </ul>
+            
+          </div>
+     
+
+  <div data-role="footer" data-position="fixed" data-theme="b">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#find-events" data-icon="search">Find Event</a></li>
+        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+ </div>
+<!-- close User Profile View  -->
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <!-- <script src="js/jqm-config.js"></script> -->
