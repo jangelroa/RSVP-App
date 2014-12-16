@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    # format.json { render json: @events, status: :ok  }
   end
 
   # GET /events/1

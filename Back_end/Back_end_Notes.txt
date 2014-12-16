@@ -58,6 +58,36 @@ _git commit -m "
         rake db:create
         rake db:migrate
     "
+_In rails console:
+    Event.last.update_column(:price, 35.20)
+or
+    e = Event.last
+    e.price = 88.20
+    e.save
+more practise
+    Event.last.user
+    User.first.events
+    Event.last.attending_users
+    User.last.attending_events
+    User.first.attendances
+    Event.first.attendances
+    e = Event.last
+    ul=User.last
+    ul.attending_events << e
+    Attendance.all
 
+_Watching RailsCast video about Active Model Serializers:
+http://railscasts.com/episodes/409-active-model-serializers?view=asciicast
+    gem 'active_model_serializers'
+        bundle install
+    rails g serializer event
 
+    _In events_controller.rb
+    def show
+      @article = Event.find(params[:id])
+      respond_to do |format|
+        format.html
+        format.json { render json: @event, root: false }
+      end
+    end
 
