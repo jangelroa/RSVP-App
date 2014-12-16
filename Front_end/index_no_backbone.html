@@ -42,11 +42,8 @@
     .txt-right {
       text-align:right;
     }
-  </style>
-  <body>
+  </style><body>
 
-<div id="container" class="container">
-</div>
 <!-- User Login View -->
 
 <div data-role="page" id="user-login">
@@ -192,11 +189,6 @@
 <!-- close Find Events View -->
 
 <!--Event List Page-->
-
-<script type="x-handlebars-template" id="event-list-template">
-
-{{#each allEvents}}
-
 <div data-role="page" id="event-list">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
@@ -206,9 +198,33 @@
     <ul id="event-list-items" data-role="listview" data-filter="true">
       <li>
         <a href="#priv-individual-event" data-icon="carat-r">
-          <img src="{{attributes.image}}">
-          <h3> {{attributes.title}} </h3>
-          <p>{{attributes.public_description</p>
+          <img src="images/legs.jpg">
+          <h3> Name of Private Event- with Code </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#pub-individual-event" data-icon="carat-r">
+          <img src="images/red_lips.jpg">
+          <h3> Name of Event (public view) </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+      
+       <li>
+        <a href="#priv-individual-event" data-icon="carat-r">
+          <img src="images/legs.jpg">
+          <h3> Name of Private Event (with Code) </h3>
+          <p>Description text</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#pub-individual-event" data-icon="carat-r">
+          <img src="images/red_lips.jpg">
+          <h3> Name of Event (public view) </h3>
+          <p>Description text</p>
         </a>
       </li>
     </ul>
@@ -224,9 +240,7 @@
     </div>
   </div>
 </div>
-{{/each}}
-</script>
-<!-- close Event List Page-->
+<!--/Event List Page-->
 
 <!--RSVP Guest List Page-->
 <div data-role="page" id="rsvpd-guests">
@@ -488,7 +502,6 @@
 <!-- close Create Event View -->
 
 <!-- Edit Event View -->
-<script type="x-handlebars-template" id="edit-event-template">
 
 <div data-role="page" id="edit-event">
   <div data-role="header" data-theme="b">
@@ -500,53 +513,53 @@
       Event Name
     </div>
     <div class="margin-top-20">
-      <input type="text" placeholder="Event Name" id="edit-title" value="{{eventInfo.attributes.title}}" />
+      <input id="event_name" type="text" placeholder="Event Name" />
     </div>
     <div class="margin-top-20 bold">
        Description (public view)
     </div>
     <div class="margin-top-20">
-      <textarea type="text" placeholder="Short Description (public view)" id="edit-public_description" value= "{{attributes.public_description}}"></textarea>
+      <textarea id="pub_desc" type="text" placeholder="Short Description (public view)"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Description (private view)
     </div>
     <div class="margin-top-20">
-      <textarea type="text" placeholder="Detailed Description (private view)" id="edit-private_description" value="{{attributes.private_description}}"></textarea>
+      <textarea id="pub_desc" type="text" placeholder="Detailed Description (private view)"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Date of Event
     </div>
     <div class="margin-top-20">
-      <input type="text" placeholder="mm/dd/yyyy" id="edit-date" value="{{attributes.date}}" />
+      <input id="date" type="text" placeholder="mm/dd/yyyy" />
     </div>
     <div class="margin-top-20 bold">
       Time
     </div>
     <div class="margin-top-20">
-      <input type="text"  placeholder="00:00" id="edit-time" value="{{attributes.time}}"/>
+      <input id="time" type="text"  placeholder="00:00" />
     </div>
     <div class="margin-top-20 bold">
       Max # of guests (optional)
     </div>
     <div class="margin-top-20">
-      <input type="text"  placeholder="1000" id="edit-guest" value="{{attributes.guests}}"/>
+      <input id="guests" type="text"  placeholder="1000" />
     </div>
     <div class="margin-top-20 bold">
       Picture (optional)
     </div>
     <div class="margin-top-20">
-      <input type="text" placeholder="Picture" id="edit-picture" value="{{attributes.picture}}"/>
+      <input id="picture" type="text" placeholder="Picture" />
     </div>
   
     <div role="main" class="ui-content">
     <form>
       <fieldset data-role="controlgroup">
         <legend>Is your event...</legend>
-        <input type="radio" name="private" id="edit-private" value="{{attributes.private}}">
+        <input type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
         <label for="radio-choice-1"> Private </label>
 
-        <input type="radio" name="public" id="edit-public" value="{{attributes.public}}">
+        <input type="radio" name="public" id="radio-choice-2" value="choice-2">
         <label for="radio-choice-2">Public</label>
 
       </fieldset>
@@ -560,7 +573,7 @@
     
       <a href="#invite-guests" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
 
-      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVPd for this event?</a>
+      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVP'ed for this event?</a>
 
       <a href="#wants-invite" data-role="button" data-theme="b" data-icon = "alert" data-iconpos = "right" data-theme = "b">Who wants to be invited?</a>
     </div>
@@ -578,7 +591,6 @@
   </div>
 
 </div>
-</script>
 <!-- close Edit Event View -->
 
 <!-- User Profile View -->
@@ -747,12 +759,12 @@
 <!-- close Send Message to Host View  -->
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="js/jqm-config.js"></script>
+<!-- <script src="js/jqm-config.js"></script> -->
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="lib/handlebars.js"></script>
 <script src="lib/underscore-min.js"></script>
 <script src="lib/backbone-min.js"></script>
-<script src="js/app.js"></script>
+<!-- <script src="js/app.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="js/app.js"></script> -->
 
