@@ -17,7 +17,7 @@ var individualEventTemplate;
 
 var loginTemplate;
 // var editUseremplate;
-// var newUserTemplate;
+var newUserTemplate;
 
 //Compile all templates on document ready for Events
 
@@ -39,7 +39,12 @@ var loginTemplate;
 (function() {
   var loginTemplateSource = $("#login-template").html();
   loginTemplate = Handlebars.compile(loginTemplateSource);
+
+  var newUserTemplateSource = $("#new-user-template").html();
+  newUserTemplate = Handlebars.compile(newUserTemplateSource);
 })();
+
+// This section is all USERS related **************************************
 
 //we are setting up an event "collection" of users (Backbone does this)
 var Users = Backbone.Collection.extend({
@@ -51,7 +56,120 @@ var Event = Backbone.Model.extend({
   urlRoot:"http://api.rsvp_app.dev/users"
 });
 
-///////////
+//Set up user login "View"
+var LoginView = Backbone.View.extend({
+  el: "#container",
+  render: function() {
+    var html = loginTemplate();
+    $(this.el).html(html);
+    $("#container").trigger("create");
+  },
+
+  events: {
+    "click #login_submit": "login_submit"
+    // "click #newUser": "new_user"
+  },
+
+
+  // Defining a login_submit function
+  login_submit: function(event) {
+    // $('#login_submit').submit(function(event){
+      event.preventDefault();
+      $.ajax({
+          url: "http://api.rsvp_app.dev/users/login/",
+          type: "POST",
+          data: {
+
+              username: "sandima",
+              password: "s"
+
+          } ,
+          success: function(data) {
+            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
+            // sessionStorage.setItem("user_id", data.responseJSON.id);
+            router.navigate('', {trigger: true});
+            // var html = loginTemplate({loginData: data});
+
+            alert("Login works");
+            console.log(data);
+            // WORKING
+
+            // $("#container").html(html);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert("Username and Password don't match");
+            // console.log(errorThrown);
+
+            // THE USERNAME AND PASSWORD DONT MATCH
+          }
+        });
+
+    // });
+  }
+
+});
+
+//Set up NEW USER signup  "View"
+var NewUserSignup = Backbone.View.extend({
+  el: "#container",
+  render: function() {
+    var html = newUserTemplate();
+    $(this.el).html(html);
+      // $("#container").html(html);
+      $("#container").trigger("create");
+  },
+
+  events: {
+
+    "click #submit_newUser": "new_user"
+  },
+
+  // Defining a new_user function
+  new_user: function(event) {
+    // $('#new_user').submit(function(event){
+      event.preventDefault();
+      $.ajax({
+          url: "http://api.rsvp_app.dev/users/users",
+          type: "POST",
+          data: {
+          user: {
+              firstname: $('#new_user input[name=firstname]').val(),
+              lastname: $('#new_user input[name=lastname]').val(),
+              email: $('#new_user input[name=email]').val(),
+              username: $('#new_user input[name=username]').val(),
+              password: $('#new_user input[name=lasttname]').val(),
+              picture_url: $('#new_user input[name=picture_url').val(),
+            }
+
+
+          } ,
+          success: function(data) {
+            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
+            // sessionStorage.setItem("user_id", data.responseJSON.id);
+            router.navigate('', {trigger: true});
+            // var html = loginTemplate({loginData: data});
+
+            alert("New User Created");
+            console.log(data);
+            // WORKING
+
+            // $("#container").html(html);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert("Something went wrong");
+            // console.log(errorThrown);
+
+            // THE USERNAME AND PASSWORD DONT MATCH
+          }
+        });
+
+    // });
+  }
+
+});
+
+
+// This section is all EVENTS related *************************************
 
 //we are setting up an event "collection" of events (Backbone does this)
 var Events = Backbone.Collection.extend({
@@ -102,6 +220,7 @@ var ShowIndividualEvent = Backbone.View.extend({
         });
   }
 });
+
 
 //Set up login View
 var LoginView = Backbone.View.extend({
@@ -258,7 +377,7 @@ var events = new Events();
 var Router = Backbone.Router.extend({
   routes: {
     "":"index",
-
+    "allEvents":"all_events",
     "edit/:id":"edit_event",
     "new":"new_event",
     "show_event/:id":"show_event",
@@ -294,6 +413,12 @@ var Router = Backbone.Router.extend({
   login: function() {
     var login = new LoginView();
     login.render();
+  },
+
+  //defining new_user route
+  new_user: function() {
+    var newUserSignup = new NewUserSignup();
+    newUserSignup.render();
   }
 });
 

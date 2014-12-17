@@ -63,10 +63,11 @@
 
               <li> <a href="#" id = "login_submit" data-role="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Login</a></li>
 
+
             </ul>
 
            <h3>Are you a New User?</h3>
-           <a href="#newUser" id = "new_user_submit" data-role ="button" data-icon = "user" data-iconpos = "right">Sign Up - if you dare!</a>
+           <a href="#newUser"  data-role ="button" data-icon = "user" data-iconpos = "right">Sign Up - if you dare!</a>
     </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
 
@@ -80,7 +81,7 @@
 
 <!-- New User View -->
 <script type="x-handlebars-template" id="new-user-template">
-// <div data-role="page" id="new-user">
+
   <div data-role="header" data-theme="b">
     <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>New User Sign Up </h2>
@@ -90,47 +91,49 @@
       First Name
     </div>
     <div class="margin-top-20">
-      <input id="first_name" type="text" placeholder="First Name" />
+      <input name ="firstname" id="first_name" type="text" placeholder="First Name" />
     </div>
     <div class="margin-top-20 bold">
        Last Name
     </div>
     <div class="margin-top-20">
-      <input id="last_name" type="text" placeholder=" Last Name" />
+      <input name = "lastname" id="last_name" type="text" placeholder=" Last Name" />
     </div>
     <div class="margin-top-20 bold">
       Email
     </div>
     <div class="margin-top-20">
-      <input id="email" type="email" placeholder="Email" />
+      <input name = "email" id="email" type="email" placeholder="Email" />
     </div>
     <div class="margin-top-20 bold">
       Username
     </div>
     <div class="margin-top-20">
-      <input id="username" type="text" placeholder="Username" />
+      <input name ="username" id="username" type="text" placeholder="Username" />
     </div>
     <div class="margin-top-20 bold">
       Password
     </div>
     <div class="margin-top-20">
-      <input id="password" type="text"  placeholder="Password" />
+      <input name= "password" id="password" type="text"  placeholder="Password" />
     </div>
     <div class="margin-top-20 bold">
       Picture (optional)
     </div>
     <div class="margin-top-20">
-      <input id="picture" type="text" placeholder="Picture" />
+      <input name ="picture_url" id="picture" type="text" placeholder="Picture" />
     </div>
 
     <div class="margin-top-20">
 
-      <a href="#event-list" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am ready to submit...</a>
+
+      <a href="#submit_newUser" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am ready to submit...</a>
 
     </div>
   </div>
-// </div>
+
 </script>
+
 <!-- close New User View -->
 
 <!-- Find Events View -->
