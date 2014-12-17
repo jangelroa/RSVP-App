@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def login
+    @user = User.find_by_email_and_password(params[:email], params[:password])
+    if @user
+      @user.set_auth_token
+      @user.save
+      render "users/show", status: :ok
+    end
+  end
+
   # GET /users
   # GET /users.json
   def index
