@@ -6,12 +6,6 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
-<!-- Latest compiled and minified CSS Bootstrap --><!-- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
-
-<!-- Optional theme -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
-
 <style>
     .smaller {
       width:600px;
@@ -205,7 +199,7 @@
 
     <ul id="event-list-items" data-role="listview">
       <li>
-        <a href="#edit/{{attributes.id}}" data-icon="carat-r">
+        <a href="#show_event/{{attributes.id}}" data-icon="carat-r">
           <img src="{{attributes.event_picture_url}}">
           <h3> {{attributes.title}} </h3>
           <p>{{attributes.public_description}}</p>
@@ -313,7 +307,8 @@
 <!--close Wants Invite List Page-->
 
 <!-- Private Individual Event-Code View -->
-<!-- <div data-role="page" id="priv-individual-event">
+
+<script type="x-handlebars-template" id="individual-event-template">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h1>Yes, please come....</h1>
@@ -322,16 +317,16 @@
 
     <div role="main" class="ui-content">
       <div class="ui-grid-a">
-        <h3> Event Name:  </h3>
-        <div class="ui-block-a"><img src="images/red_lips.jpg" style = width: 100px, height = 100px/></div>
-        <div class="ui-block-b"><strong>Hosted by: </strong> and text inside will wrap.</div>
+        <h3> Event: ##### </h3>
+        <div class="ui-block-a"><img src="images/legs.jpg" style = width: 100px, height = 100px/></div>
+        <div class="ui-block-b"><strong>Location: TBD</strong> Check for updated location information in 1 week!</div>
       </div>
   </div>
 
   <div role="main" class="ui-content">
       <div class="ui-grid-a">
-        <div class="ui-block-a"><strong>Date: </strong> and text inside will wrap.</div>
-        <div class="ui-block-b"><strong>Time: </strong> and text inside will wrap.</div>
+        <div class="ui-block-a"><strong> Save the date:</strong> </div>
+        <div class="ui-block-b"><strong>Time: </strong> </div>
       </div>
   </div>
     <div role="main" class="ui-content">
@@ -356,7 +351,7 @@
       </ul>
     </div>
   </div>
-</div> -->
+</div>
 <!-- close Private Individual Event-Code View -->
 
 <!-- Public View of Individual Private Event -->
@@ -399,7 +394,8 @@
       </ul>
     </div>
   </div>
-</div> -->
+  </script>
+ 
 <!-- close Public View of Individual Private Event- -->
 
 <!-- Create Event View -->
@@ -753,8 +749,7 @@
 <script src="lib/underscore-min.js"></script>
 <script src="lib/backbone-min.js"></script>
 <script src="js/app.js"></script>
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="js/app.js"></script> -->
+
 
 </body>
 </html>
