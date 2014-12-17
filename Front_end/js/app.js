@@ -80,21 +80,20 @@ var LoginView = Backbone.View.extend({
           type: "POST",
           data: {
 
-              username: "sandima",
-              password: "s"
+              username: $("#login_username").val(),
+              password: $("#login_password").val()
 
           } ,
           success: function(data) {
-            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-            // sessionStorage.setItem("user_id", data.responseJSON.id);
+            sessionStorage.setItem("auth_token", data.auth_token);
+            sessionStorage.setItem("user_id", data.id);
+            // console.log(data.auth_token);
             router.navigate('', {trigger: true});
-            // var html = loginTemplate({loginData: data});
 
-            alert("Login works");
-            console.log(data);
+            // alert("User Log");
+            // console.log(data);
             // WORKING
 
-            // $("#container").html(html);
           },
           error: function(jqXHR, textStatus, errorThrown) {
             alert("Username and Password don't match");
@@ -216,7 +215,7 @@ var ShowIndividualEvent = Backbone.View.extend({
           var html = individualEventTemplate({
             eventInfo: event_info
           });
-          
+
           $("#container").html(html);
           $("#container").trigger("create");
         }
