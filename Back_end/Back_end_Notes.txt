@@ -96,5 +96,19 @@ SecureRandom.hex
 
 To see the server log using pow:
     tail -f log/development.log
+To log something:
+    logger.info("AAAAAAAAAAAAAAAAAAAAA")
+    logger.info(params[:username])
+
+Powder:
+
+# Stop
+powder down #or
+powder stop
+
+# Start
+powder up #or
+powder start
+
 
 
