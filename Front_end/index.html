@@ -43,7 +43,9 @@
 
 <!-- User Login View -->
 
-<!-- <div data-role="page" id="user-login">
+<!-- <div data-role="page" id="user-login"> -->
+  
+<script type="x-handlebars-template" id="login-template">
   <div data-role="header" data-theme="b">
  
     <h1>Secret Events Login</h1>
@@ -58,26 +60,29 @@
               <li><input type="text" placeholder="Password"/></li>
               <li>Look up your event with a CODE</li>
               <li><input type="text" placeholder="Past your code here"/></li>
-              <li> <a href="#find-events" data-role="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Login</a></li>
+              
+              <li> <a href="#" id = "login_submit" data-role="button" data-icon = "carat-r" data-iconpos = "right" data-theme="b">Login</a></li>
                 
             </ul>  
            
            <h3>Are you a New User?</h3> 
-           <a href="#new-user" data-role ="button" data-icon = "user" data-iconpos = "right">Sign Up - if you dare!</a>       
+           <a href="#newUser" id = "new_user_submit" data-role ="button" data-icon = "user" data-iconpos = "right">Sign Up - if you dare!</a>       
     </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
   
     <h1>The fun is about to begin...</h1>
   </div>
-</div>  -->
+
+  </script>
+<!-- </div>  -->
 
 <!-- close User Login-->
 
 <!-- New User View -->
-
-<!-- <div data-role="page" id="new-user">
+<script type="x-handlebars-template" id="new-user-template">
+// <div data-role="page" id="new-user">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>New User Sign Up </h2>
   </div>
   <div data-role="content">
@@ -124,15 +129,15 @@
 
     </div>
   </div>
-</div> -->
-  
+// </div>
+</script>  
 <!-- close New User View -->
 
 <!-- Find Events View -->
 
 <!-- <div data-role="page" id="find-events">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Find Your Event!</h1>
   </div>
  
@@ -191,7 +196,7 @@
 
 <div id="event-list">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Event List</h1>
   </div>
    {{#each allEvents}}
@@ -227,7 +232,7 @@
 <!--RSVP Guest List Page-->
 <!-- div data-role="page" id="rsvpd-guests">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>RSVP'd Guest List</h1>
   </div>
   <div data-role="content">
@@ -268,7 +273,7 @@
 <!--Wants Invite List Page-->
 <!-- <div data-role="page" id="wants-invite">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Wants an Invite</h1>
   </div>
   <div data-role="content">
@@ -331,7 +336,7 @@
   </div>
     <div role="main" class="ui-content">
       <h3> Description: </h3>
-      <p> {{eventInfo.attributes.public_description}} </p>
+      <p> {{eventInfo.attributes.private_description}} </p>
 
     </div> 
 
@@ -398,7 +403,7 @@
 
 <!-- <div data-role="page" id="create-event">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Create New Event </h2>
   </div>
   <div data-role="content">
@@ -485,7 +490,7 @@
 
 <!-- <div data-role="page" id="edit-event">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>View / Edit Event </h2>
   </div>
   <div data-role="content">
@@ -577,7 +582,7 @@
 
 <!-- <div data-role="page" id="user-profile">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Your User Profile </h2>
   </div>
   <div role="main" class="ui-content">
@@ -659,7 +664,7 @@
 
 <!-- <div data-role="page" id="invite-guests">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+   <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Invite Guests </h2>
   </div>
   <div role="main" class="ui-content">
@@ -705,7 +710,7 @@
 
 <!-- <div data-role="page" id="message-host">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Message to Host </h2>
   </div>
   <div role="main" class="ui-content">
