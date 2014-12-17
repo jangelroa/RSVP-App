@@ -10,12 +10,10 @@ class EventsController < ApplicationController
 
 
 
-
-
-
   def index
+
     # @events = Event.where(publico: false).order(created_at: :desc)
-    @events = Event.where(publico: false)
+    @events = Event.all
     event_data = []
 
     @events.each do |event|
@@ -26,9 +24,6 @@ class EventsController < ApplicationController
 
     render :json => event_data
   end
-
-
-
 
 
 

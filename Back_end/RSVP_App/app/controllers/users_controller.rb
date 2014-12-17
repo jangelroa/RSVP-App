@@ -7,6 +7,8 @@ class UsersController < ApplicationController
       @user.set_auth_token
       @user.save
       render "users/show", status: :ok
+    else
+      head :not_found
     end
   end
 
