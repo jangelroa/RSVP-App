@@ -45,11 +45,11 @@
   </style>
   <body>
 
-  <div id="container" class="container"></div>
-
+<div id="container" class="container">
+</div>
 <!-- User Login View -->
-
-<!-- <div data-role="page" id="user-login">
+<!-- 
+<div data-role="page" id="user-login">
   <div data-role="header" data-theme="b">
  
     <h1>Secret Events Login</h1>
@@ -130,13 +130,13 @@
 
     </div>
   </div>
-</div> -->
-  
+</div>
+   -->
 <!-- close New User View -->
 
 <!-- Find Events View -->
-
-<!-- <div data-role="page" id="find-events">
+<!-- 
+<div data-role="page" id="find-events">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h1>Find Your Event!</h1>
@@ -187,38 +187,36 @@
       </ul>
     </div>
   </div>
-</div>
- -->
+</div> -->
+
 <!-- close Find Events View -->
 
 <!--Event List Page-->
+
 <script type="x-handlebars-template" id="event-list-template">
 
+{{#each allEvents}}
 
-<div id="event-list">
+<div data-role="page" id="event-list">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h1>Event List</h1>
   </div>
-   {{#each allEvents}}
   <div data-role="content">
-
-    <ul id="event-list-items" data-role="listview">
+    <ul id="event-list-items" data-role="listview" data-filter="true">
       <li>
         <a href="#edit/{{attributes.id}}" data-icon="carat-r">
           <img src="{{attributes.event_picture_url}}">
           <h3> {{attributes.title}} </h3>
-          <p>{{attributes.public_description}}</p>
+          <p>{{attributes.public_description</p>
         </a>
       </li>
-    </ul
-   
+    </ul>
   </div>
-   {{/each}}
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#" data-icon="bullets">Event List</a></li>
+        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#create-event" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
@@ -226,12 +224,12 @@
     </div>
   </div>
 </div>
-
+{{/each}}
 </script>
-<!--/Event List Page-->
+<!-- close Event List Page-->
 
 <!--RSVP Guest List Page-->
-<!-- div data-role="page" id="rsvpd-guests">
+<!-- <div data-role="page" id="rsvpd-guests">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h1>RSVP'd Guest List</h1>
@@ -490,8 +488,9 @@
 <!-- close Create Event View -->
 
 <!-- Edit Event View -->
+<script type="x-handlebars-template" id="edit-event-template">
 
-<!-- <div data-role="page" id="edit-event">
+<div data-role="page" id="edit-event">
   <div data-role="header" data-theme="b">
     <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
     <h2>View / Edit Event </h2>
@@ -501,53 +500,53 @@
       Event Name
     </div>
     <div class="margin-top-20">
-      <input id="event_name" type="text" placeholder="Event Name" />
+      <input type="text" placeholder="Event Name" id="edit-title" value="{{eventInfo.attributes.title}}" />
     </div>
     <div class="margin-top-20 bold">
        Description (public view)
     </div>
     <div class="margin-top-20">
-      <textarea id="pub_desc" type="text" placeholder="Short Description (public view)"></textarea>
+      <textarea type="text" placeholder="Short Description (public view)" id="edit-public_description" value= "{{eventInfo.attributes.public_description}}"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Description (private view)
     </div>
     <div class="margin-top-20">
-      <textarea id="pub_desc" type="text" placeholder="Detailed Description (private view)"></textarea>
+      <textarea type="text" placeholder="Detailed Description (private view)" id="edit-private_description" value="{{eventInfo.attributes.private_description}}"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Date of Event
     </div>
     <div class="margin-top-20">
-      <input id="date" type="text" placeholder="mm/dd/yyyy" />
+      <input type="text" placeholder="mm/dd/yyyy" id="edit-date" value="{{eventInfo.attributes.date}}" />
     </div>
     <div class="margin-top-20 bold">
       Time
     </div>
     <div class="margin-top-20">
-      <input id="time" type="text"  placeholder="00:00" />
+      <input type="text"  placeholder="00:00" id="edit-time" value="{{eventInfo.attributes.time}}"/>
     </div>
     <div class="margin-top-20 bold">
       Max # of guests (optional)
     </div>
     <div class="margin-top-20">
-      <input id="guests" type="text"  placeholder="1000" />
+      <input type="text"  placeholder="1000" id="edit-max_attendances" value="{{eventInfo.attributes.max_attendances}}"/>
     </div>
     <div class="margin-top-20 bold">
       Picture (optional)
     </div>
     <div class="margin-top-20">
-      <input id="picture" type="text" placeholder="Picture" />
+      <input type="text" placeholder="Picture" id="edit-event_picture_url" value="{{eventInfo.attributes.event_picture_url}}"/>
     </div>
   
     <div role="main" class="ui-content">
     <form>
       <fieldset data-role="controlgroup">
         <legend>Is your event...</legend>
-        <input type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
+        <input type="radio" name="private" id="edit-publico" value="{{eventInfo.attributes.publico}}">
         <label for="radio-choice-1"> Private </label>
 
-        <input type="radio" name="public" id="radio-choice-2" value="choice-2">
+        <input type="radio" name="public" id="edit-publico" value="{{eventInfo.attributes.publico}}">
         <label for="radio-choice-2">Public</label>
 
       </fieldset>
@@ -561,7 +560,7 @@
     
       <a href="#invite-guests" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
 
-      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVP'ed for this event?</a>
+      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVPd for this event?</a>
 
       <a href="#wants-invite" data-role="button" data-theme="b" data-icon = "alert" data-iconpos = "right" data-theme = "b">Who wants to be invited?</a>
     </div>
@@ -578,7 +577,8 @@
     </div>
   </div>
 
-</div> -->
+</div>
+</script>
 <!-- close Edit Event View -->
 
 <!-- User Profile View -->
@@ -746,9 +746,9 @@
 </div> -->
 <!-- close Send Message to Host View  -->
 
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="js/jqm-config.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="lib/handlebars.js"></script>
 <script src="lib/underscore-min.js"></script>
 <script src="lib/backbone-min.js"></script>
