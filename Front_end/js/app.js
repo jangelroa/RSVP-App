@@ -204,20 +204,24 @@ var EventList = Backbone.View.extend({
 var ShowIndividualEvent = Backbone.View.extend({
   el: "#container",
   render: function(id) {
-    var event = new Event({
+    var event_info = new Event({
       id: id
     });
 // grab things from database using backbone (fetch is backbone specific)
-    event.fetch({
-      success: function(){
-        var html = individualEventTemplate({
-                //gettig the event info and passing it in
-                eventInfo: event
-              });
+    event_info.fetch({
+      success: function() {
+        if (event_info.attributes.publico) {
+          console.log("Public event");
+        } else {
+          var html = individualEventTemplate({
+            eventInfo: event_info
+          });
+          
           $("#container").html(html);
           $("#container").trigger("create");
-          }
-        });
+        }
+      }
+    });
   }
 });
 
