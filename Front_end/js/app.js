@@ -125,8 +125,8 @@ var LoginView = Backbone.View.extend({
           type: "POST",
           data: {
 
-              username: "jangelroa",
-              password: "b"
+              username: "sandima",
+              password: "s"
 
           } ,
           success: function(data) {
@@ -142,7 +142,7 @@ var LoginView = Backbone.View.extend({
             // $("#container").html(html);
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            alert("something went wrong login the user");
+            alert("Username and Password don't match");
             // console.log(errorThrown);
 
             // THE USERNAME AND PASSWORD DONT MATCH
@@ -280,7 +280,7 @@ var Router = Backbone.Router.extend({
 
   },
 
-  //Defining index route 
+//Defining index route 
   index: function() {
     var eventlist = new EventList();
     eventlist.render();
@@ -292,47 +292,9 @@ var Router = Backbone.Router.extend({
   }, 
 
 //defining login route
-
   login: function() {
     var login = new LoginView();
     login.render();
-    // var html = loginTemplate();
-
-    // $("#container").html(html);
-    // $("#container").trigger("create");
-
-    // $('#login').submit(function(event){
-    //   event.preventDefault();
-    //   $.ajax({
-    //       url: "http://api.rsvp_app.dev/users/login/",
-    //       type: "POST",
-    //       data: {
-
-    //           username: "jangelroa",
-    //           password: "a"
-
-    //       } ,
-    //       success: function(data) {
-    //         sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-    //         sessionStorage.setItem("user_id", data.responseJSON.id);
-    //         router.navigate('index', {trigger: true});
-    //         // var html = loginTemplate({loginData: data});
-
-    //         alert("User Log");
-    //         console.log(data);
-    //         // WORKING
-
-    //         // $("#container").html(html);
-    //       },
-    //       error: function(jqXHR, textStatus, errorThrown) {
-    //         alert("something went wrong login the user");
-    //         // console.log(errorThrown);
-
-    //         // THE USERNAME AND PASSWORD DONT MATCH
-    //       }
-    //     });
-
-    // });
   }
 });
 
