@@ -2,13 +2,30 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def login
-    @user = User.find_by_email_and_password(params[:email], params[:password])
+
+# logger.info("AAAAAAAAAAAAAAAAAAAAA")
+# logger.info(params[:username])
+
+    # @user = User.find_by_username_and_password(params[:username], params[:password])
+
+    # log(user_params.user)
+    @user = User.where(username: params[:username], password: params[:password]).first
+
+    # @user = User.where(username: params[:username]).first
+    # @user.valid_password?(params[:password])
     if @user
-      @user.set_auth_token
+      # @user.set_auth_token
       @user.save
-      render "users/show", status: :ok
+      # format.json { render :show, status: :created, location: @user }
+      # render "users/show", status: :ok
+      # head :not_found
+      render nothing: true
+
     else
+    #   render nothing: true
       head :not_found
+    #             //or ?
+    # format.json { head :no_content }
     end
   end
 
