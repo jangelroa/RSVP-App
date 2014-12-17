@@ -1,3 +1,15 @@
+$.mobile.ajaxEnabled = false;
+$.mobile.linkBindingEnabled = false;
+$.mobile.hashListeningEnabled = false;
+$.mobile.pushStateEnabled = false;
+$.mobile.changePage.defaults.changeHash = false;
+
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    xhr.setRequestHeader("Accept", "application/json")
+  }
+});
+
 var eventListTemplate;
 // var editEventTemplate;
 // var newEventTemplate;
@@ -25,7 +37,7 @@ var individualEventTemplate;
 
 //we are setting up an event "collection" of events (Backbone does this)
 var Events = Backbone.Collection.extend({
-  url: "http://api.rsvp_app.dev/events"
+  url: "http://api.rsvp_app.dev/events.json"
 });
 
 // we are setting up an event "Model"
@@ -53,23 +65,23 @@ var EventList = Backbone.View.extend({
 });
 
 //Set up show Individual Event View
-var showIndividualEvent = Backbone.View.extend({
+var ShowIndividualEvent = Backbone.View.extend({
   el: "#container", 
   render: function(id) {
     var event = new Event({
       id: id
     });
 // grab things from database using backbone (fetch is backbone specific)
-                      event.fetch({
-                        success: function(){
-                          var html = individualEventTemplate({
-                                  //gettig the event info and passing it in 
-                                  eventInfo: event
-                                });
-                            $("#container").html(html);
-                            $("#container").trigger("create");
-                            } 
-                          });
+    event.fetch({
+      success: function(){
+        var html = individualEventTemplate({
+                //gettig the event info and passing it in 
+                eventInfo: event
+              });
+          $("#container").html(html);
+          $("#container").trigger("create");
+          } 
+        });
   }
 });
 
@@ -179,16 +191,17 @@ var Router = Backbone.Router.extend({
 
     "edit/:id":"edit_event",
     "new":"new_event",
-    "showEvent/:id":"show_event",
+    "show_event/:id":"show_event",
     // "showPrivate/:id":"show_priv",
     "findEvents":"find_events",
     "add":"add_event",
-    "invite":"invite_guests",
-    "showRSVP":"show_rsvps",
+    
+    "invite/:id":"invite_guests",
+    "showRSVP/:id":"show_rsvps",
+
     "editUser/:id":"edit-user",
     "newUser":"new_user",
-    "delete":"delete_event",
-    "showProfile":"show_profile"
+    "showProfile/:id":"show_profile"
 
   },
 
@@ -198,8 +211,8 @@ var Router = Backbone.Router.extend({
     eventlist.render();
   },
 //Definining the show Individual Event Route
-  show_event: function() {
-  var showIndividualEvent = new showIndividualEvent();
+  show_event: function(id) {
+  var showIndividualEvent = new ShowIndividualEvent();
   showIndividualEvent.render(id);
 }
 });

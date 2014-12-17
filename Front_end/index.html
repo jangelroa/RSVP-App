@@ -310,15 +310,15 @@
 
 <script type="x-handlebars-template" id="individual-event-template">
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Yes, please come....</h1>
   </div>
  
 
     <div role="main" class="ui-content">
       <div class="ui-grid-a">
-        <h3> Event: ##### </h3>
-        <div class="ui-block-a"><img src="images/legs.jpg" style = width: 100px, height = 100px/></div>
+        <h3> Event: {{eventInfo.attributes.title}}</h3>
+        <div class="ui-block-a"><img src="{{eventInfo.attributes.event_picture_url}}" style = width: 100px, height = 100px/></div>
         <div class="ui-block-b"><strong>Location: TBD</strong> Check for updated location information in 1 week!</div>
       </div>
   </div>
@@ -330,12 +330,8 @@
       </div>
   </div>
     <div role="main" class="ui-content">
-      <h3> Description:  </h3>
-      <p> Here is a detailed description of the event.  This event is a ...Spectactular. Located in the heart of the heart of the heart of the city, we are throwing the biggest New Year's Eve Bash.  You will be blown away by the extravagance.  This is an invite only, private event.  The cost if $1000 and if you want to bring a guest, you must send me an email so that I can send your guest a code to RSVP.  The Max number of guests are 500 people. There will be free food, free drinks, free clothes, free shoes, free massages, free, free, free, free.  
-
-      There will also be a gigantic balloon drop!  Make sure you buy your tickets early.  The link to purchasing tickets is here:  http://eventbrite.com/crazy-ass party
-
-      See you soon!  Oh yes, clothes optional.  If you come naked, then you don't have to pay.  If you are too hairy and you think you will scare away people, then you may have to pay double! </p>
+      <h3> Description: </h3>
+      <p> {{eventInfo.attributes.public_description}} </p>
 
     </div> 
 
@@ -744,7 +740,7 @@
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="js/jqm-config.js"></script>
+<!-- <script src="js/jqm-config.js"></script> -->
 <script src="lib/handlebars.js"></script>
 <script src="lib/underscore-min.js"></script>
 <script src="lib/backbone-min.js"></script>
