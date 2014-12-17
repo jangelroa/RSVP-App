@@ -15,11 +15,11 @@ var eventListTemplate;
 // var newEventTemplate;
 var individualEventTemplate;
 
-// var userTemplate;
+var loginTemplate;
 // var editUseremplate;
 // var newUserTemplate;
 
-//Compile all templates on document ready
+//Compile all templates on document ready for Events
 
 (function() {
   var eventListTemplateSource = $("#event-list-template").html();
@@ -34,6 +34,24 @@ var individualEventTemplate;
   // var newEventTemplateSource = $("#new-event-template").html();
   // newEventTemplate = Handlebars.compile(newEventTemplateSource);
 })();
+
+//Compile all templates on document ready for Users
+(function() {
+  var loginTemplateSource = $("#login-template").html();
+  loginTemplate = Handlebars.compile(loginTemplateSource);
+})();
+
+//we are setting up an event "collection" of users (Backbone does this)
+var Users = Backbone.Collection.extend({
+  url: "http://api.rsvp_app.dev/users.json"
+});
+
+// we are setting up an user "Model"
+var Event = Backbone.Model.extend({
+  urlRoot:"http://api.rsvp_app.dev/users"
+});
+
+///////////
 
 //we are setting up an event "collection" of events (Backbone does this)
 var Events = Backbone.Collection.extend({
@@ -84,6 +102,59 @@ var ShowIndividualEvent = Backbone.View.extend({
         });
   }
 });
+
+//Set up login View
+var LoginView = Backbone.View.extend({
+  el: "#container", 
+  render: function() {
+    var html = loginTemplate();
+    $(this.el).html(html);
+  },
+
+  events: {
+    "click #login_submit": "login_submit",
+  },
+
+
+  // Defining a login_submit function
+  login_submit: function(event) {
+    // $('#login_submit').submit(function(event){
+      event.preventDefault();
+      $.ajax({
+          url: "http://api.rsvp_app.dev/users/login/",
+          type: "POST",
+          data: {
+
+              username: "sandima",
+              password: "s"
+
+          } ,
+          success: function(data) {
+            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
+            // sessionStorage.setItem("user_id", data.responseJSON.id);
+            router.navigate('', {trigger: true});
+            // var html = loginTemplate({loginData: data});
+
+            alert("User Log");
+            console.log(data);
+            // WORKING
+
+            // $("#container").html(html);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert("Username and Password don't match");
+            // console.log(errorThrown);
+
+            // THE USERNAME AND PASSWORD DONT MATCH
+          }
+        });
+
+    // });
+  }
+
+});
+
+
 
 //Set up a Create New Event View
 // var NewEvent = Backbone.View.extend({
@@ -199,13 +270,17 @@ var Router = Backbone.Router.extend({
     "invite/:id":"invite_guests",
     "showRSVP/:id":"show_rsvps",
 
+    "login":"login",
+    "login_submit": "login_submit",
+
+
     "editUser/:id":"edit-user",
     "newUser":"new_user",
     "showProfile/:id":"show_profile"
 
   },
 
-  //Defining index route 
+//Defining index route 
   index: function() {
     var eventlist = new EventList();
     eventlist.render();
@@ -214,8 +289,15 @@ var Router = Backbone.Router.extend({
   show_event: function(id) {
   var showIndividualEvent = new ShowIndividualEvent();
   showIndividualEvent.render(id);
-}
+  }, 
+
+//defining login route
+  login: function() {
+    var login = new LoginView();
+    login.render();
+  }
 });
+
 
 var router = new Router();
 
