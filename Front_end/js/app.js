@@ -65,7 +65,7 @@ var Event = Backbone.Model.extend({
 
 // we are setting up an event "View", using a key value pair - Eventlist is to show all evetss
 var EventList = Backbone.View.extend({
-  el: "#container", 
+  el: "#container",
   render: function() {
     //fetch is a function, through backbone, that accepts an object, uses the success error syntax
       // var that = this;
@@ -84,7 +84,7 @@ var EventList = Backbone.View.extend({
 
 //Set up show Individual Event View
 var ShowIndividualEvent = Backbone.View.extend({
-  el: "#container", 
+  el: "#container",
   render: function(id) {
     var event = new Event({
       id: id
@@ -93,19 +93,19 @@ var ShowIndividualEvent = Backbone.View.extend({
     event.fetch({
       success: function(){
         var html = individualEventTemplate({
-                //gettig the event info and passing it in 
+                //gettig the event info and passing it in
                 eventInfo: event
               });
           $("#container").html(html);
           $("#container").trigger("create");
-          } 
+          }
         });
   }
 });
 
 //Set up login View
 var LoginView = Backbone.View.extend({
-  el: "#container", 
+  el: "#container",
   render: function() {
     var html = loginTemplate();
     $(this.el).html(html);
@@ -125,21 +125,20 @@ var LoginView = Backbone.View.extend({
           type: "POST",
           data: {
 
-              username: "sandima",
-              password: "s"
+              username: $("#login_username").val(),
+              password: $("#login_password").val()
 
           } ,
           success: function(data) {
-            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-            // sessionStorage.setItem("user_id", data.responseJSON.id);
+            sessionStorage.setItem("auth_token", data.auth_token);
+            sessionStorage.setItem("user_id", data.id);
+            // console.log(data.auth_token);
             router.navigate('', {trigger: true});
-            // var html = loginTemplate({loginData: data});
 
-            alert("User Log");
-            console.log(data);
+            // alert("User Log");
+            // console.log(data);
             // WORKING
 
-            // $("#container").html(html);
           },
           error: function(jqXHR, textStatus, errorThrown) {
             alert("Username and Password don't match");
@@ -164,13 +163,13 @@ var LoginView = Backbone.View.extend({
 
 //     $("#container").html(html);
 //   },
-//   // key value pair of the event object 
+//   // key value pair of the event object
 //   // "saveEvent" in quotes is backbone specific syntax for key value pairs
 //   events: {
 //     "click #submit-event": "saveEvent"
 //   },
 //   saveBook: function() {
-//     var that = this; 
+//     var that = this;
 //     var book = new Book();
 //     var bookInfo = {
 //       title: $("#new-title").val(),
@@ -191,7 +190,7 @@ var LoginView = Backbone.View.extend({
 
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
-//   el: "#container", 
+//   el: "#container",
 //   render: function(id) {
 //     var book = new Book({
 //       id: id
@@ -201,7 +200,7 @@ var LoginView = Backbone.View.extend({
 // book.fetch({
 //   success: function(){
 //     var html = editBookTemplate({
-//             //gettig the book info and passing it in 
+//             //gettig the book info and passing it in
 //             bookInfo: book
 //           });
 //     $("#container").html(html);
@@ -213,7 +212,7 @@ var LoginView = Backbone.View.extend({
 //   "click .delete-book": "deleteBook"
 // },
 // editBook: function(event) {
-//   var that = this; 
+//   var that = this;
 //   var book = new Book();
 //   var bookInfo = {
 //     id: event.target.id,
@@ -232,7 +231,7 @@ var LoginView = Backbone.View.extend({
 //   });
 // },
 // deleteEvent: function(event){
-//   var that = this; 
+//   var that = this;
 //           // we need to instantiate the event with the id
 //           var event = new Event({
 //           id: event.target.id
@@ -266,7 +265,7 @@ var Router = Backbone.Router.extend({
     // "showPrivate/:id":"show_priv",
     "findEvents":"find_events",
     "add":"add_event",
-    
+
     "invite/:id":"invite_guests",
     "showRSVP/:id":"show_rsvps",
 
@@ -280,7 +279,7 @@ var Router = Backbone.Router.extend({
 
   },
 
-//Defining index route 
+//Defining index route
   index: function() {
     var eventlist = new EventList();
     eventlist.render();
@@ -289,7 +288,7 @@ var Router = Backbone.Router.extend({
   show_event: function(id) {
   var showIndividualEvent = new ShowIndividualEvent();
   showIndividualEvent.render(id);
-  }, 
+  },
 
 //defining login route
   login: function() {
@@ -309,12 +308,12 @@ var router = new Router();
 //   var editevent = new EditEvent();
 //   editevent.render(id);
 // };
-  
+
 //Show new eventform
 // new_event: function() {
 //   var newevent= new NewEvent();
 //   newevent.render();
-  
+
 // };
 
 //Start the history
