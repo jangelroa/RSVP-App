@@ -3,27 +3,27 @@ class EventsController < ApplicationController
 
   # GET /events
   # GET /events.json
-  # def index
-  #   @events = Event.all
-  #   # format.json { render json: @events, status: :ok  }
-  # end
-
-
-
   def index
-
-    # @events = Event.where(publico: false).order(created_at: :desc)
     @events = Event.all
-    event_data = []
-
-    @events.each do |event|
-      # user = User.select(:id, :firstname, :lastname).find(post.user_id)
-
-      event_data << { event_picture_url: event.event_picture_url, title: event.title, public_description: event.public_description, location: event.location }
-    end
-
-    render :json => event_data
+    # format.json { render json: @events, status: :ok  }
   end
+
+
+
+  # def index
+
+  #   # @events = Event.where(publico: false).order(created_at: :desc)
+  #   @events = Event.all
+  #   event_data = []
+
+  #   @events.each do |event|
+  #     # user = User.select(:id, :firstname, :lastname).find(post.user_id)
+
+  #     event_data << { id: event.id, event_picture_url: event.event_picture_url, title: event.title, public_description: event.public_description, location: event.location }
+  #   end
+
+  #   render :json => event_data
+  # end
 
 
 

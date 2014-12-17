@@ -6,26 +6,26 @@ class UsersController < ApplicationController
 # logger.info("AAAAAAAAAAAAAAAAAAAAA")
 # logger.info(params[:username])
 
-    # @user = User.find_by_username_and_password(params[:username], params[:password])
-
-    # log(user_params.user)
     @user = User.where(username: params[:username], password: params[:password]).first
 
-    # @user = User.where(username: params[:username]).first
-    # @user.valid_password?(params[:password])
     if @user
-      # @user.set_auth_token
+      @user.set_auth_token
       @user.save
-      # format.json { render :show, status: :created, location: @user }
+
+      respond_to do |format|
+        format.json { render :show, status: :created, location: @user }
+      end
       # render "users/show", status: :ok
       # head :not_found
-      render nothing: true
+      # render nothing: true
 
     else
     #   render nothing: true
       head :not_found
     #             //or ?
-    # format.json { head :no_content }
+      # respond_to do |format|
+      #   format.json { head :no_content }
+      # end
     end
   end
 
