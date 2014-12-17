@@ -1,6 +1,7 @@
 var eventListTemplate;
 // var editEventTemplate;
 // var newEventTemplate;
+var individualEventTemplate;
 
 // var userTemplate;
 // var editUseremplate;
@@ -11,6 +12,9 @@ var eventListTemplate;
 (function() {
   var eventListTemplateSource = $("#event-list-template").html();
   eventListTemplate = Handlebars.compile(eventListTemplateSource);
+
+  var individualEventTemplateSource = $("#individual-event-template").html();
+  individualEventTemplate = Handlebars.compile(individualEventTemplateSource);
 
   // var editEventTemplateSource = $("#edit-event-template").html();
   // editEventTemplate = Handlebars.compile(editEventTemplateSource);
@@ -40,10 +44,7 @@ var EventList = Backbone.View.extend({
             var html = eventListTemplate({
               allEvents: events.models
             });
-
-            // $("#container").html(html);
-            //alternative way to write the same code line above in javascript. 
-            // that.$el.html(html);
+            console.log(events.models);
             $("#container").html(html);
             $("#container").trigger("create");
         }
@@ -51,18 +52,39 @@ var EventList = Backbone.View.extend({
     }
 });
 
-//Set up a New Book View
-// var NewBook = Backbone.View.extend({
+//Set up show Individual Event View
+var showIndividualEvent = Backbone.View.extend({
+  el: "#container", 
+  render: function(id) {
+    var event = new Event({
+      id: id
+    });
+// grab things from database using backbone (fetch is backbone specific)
+                      event.fetch({
+                        success: function(){
+                          var html = individualEventTemplate({
+                                  //gettig the event info and passing it in 
+                                  eventInfo: event
+                                });
+                            $("#container").html(html);
+                            $("#container").trigger("create");
+                            } 
+                          });
+  }
+});
+
+//Set up a Create New Event View
+// var NewEvent = Backbone.View.extend({
 //   el: "#container",
 //   render: function (){
-//     var html = newBookTemplate();
+//     var html = newEventTemplate();
 
 //     $("#container").html(html);
 //   },
 //   // key value pair of the event object 
-//   // "saveBook" in quotes is backbone specific syntax for key value pairs
+//   // "saveEvent" in quotes is backbone specific syntax for key value pairs
 //   events: {
-//     "click #submit-book": "saveBook"
+//     "click #submit-event": "saveEvent"
 //   },
 //   saveBook: function() {
 //     var that = this; 
@@ -117,7 +139,7 @@ var EventList = Backbone.View.extend({
 //     release_date: $("#edit-release").val(),
 //     image: $("#edit-image").val()
 //   };
-//   book.save(bookInfo, {
+//   event.save(eventInfo, {
 //     success: function() {
 //       router.navigate("/", {
 //         trigger :true
@@ -126,14 +148,14 @@ var EventList = Backbone.View.extend({
 //     }
 //   });
 // },
-// deleteBook: function(event){
+// deleteEvent: function(event){
 //   var that = this; 
-//           // we need to instantiate the book with the id
-//           var book = new Book({
+//           // we need to instantiate the event with the id
+//           var event = new Event({
 //           id: event.target.id
 //         });
 
-// book.destroy ({
+// event.destroy ({
 //   success: function() {
 //     router.navigate("/", {
 //       trigger: true
@@ -154,32 +176,51 @@ var events = new Events();
 var Router = Backbone.Router.extend({
   routes: {
     "":"index",
+
     "edit/:id":"edit_event",
-    "new":"new_event"
+    "new":"new_event",
+    "showEvent/:id":"show_event",
+    // "showPrivate/:id":"show_priv",
+    "findEvents":"find_events",
+    "add":"add_event",
+    "invite":"invite_guests",
+    "showRSVP":"show_rsvps",
+    "editUser/:id":"edit-user",
+    "newUser":"new_user",
+    "delete":"delete_event",
+    "showProfile":"show_profile"
+
   },
 
   //Defining index route 
   index: function() {
     var eventlist = new EventList();
     eventlist.render();
-  }
+  },
+//Definining the show Individual Event Route
+  show_event: function() {
+  var showIndividualEvent = new showIndividualEvent();
+  showIndividualEvent.render(id);
+}
 });
 
 var router = new Router();
 
+
+
 //Defining edit event route
-// router.on("route:edit_event", function(id) {
-//   //we are instantiate a new Event, specifically only one record and therefore, we have to pass in an id
+// edit_event: function() {
+//    //we are instantiate a new Event, specifically only one record and therefore, we have to pass in an id
 //   var editevent = new EditEvent();
-//     editevent.render(id);
-//   });
+//   editevent.render(id);
+// };
   
-// //Show new eventform
-// router.on("route:new_event", function() {
+//Show new eventform
+// new_event: function() {
 //   var newevent= new NewEvent();
 //   newevent.render();
   
-// });
+// };
 
 //Start the history
 
