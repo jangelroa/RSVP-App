@@ -63,12 +63,12 @@ var userProfileTemplate;
 
 //we are setting up an event "collection" of users (Backbone does this)
 var Users = Backbone.Collection.extend({
-  url: "http://api.rsvp_app.dev/users.json"
+  url: "https://ancient-chamber-4889.herokuapp.com/users.json"
 });
 
 // we are setting up an user "Model"
 var User = Backbone.Model.extend({
-  urlRoot:"http://api.rsvp_app.dev/users"
+  urlRoot:"https://ancient-chamber-4889.herokuapp.com/users"
 });
 
 //Set up user login "View"
@@ -90,7 +90,7 @@ var LoginView = Backbone.View.extend({
     // $('#login_submit').submit(function(event){
       event.preventDefault();
       $.ajax({
-          url: "http://api.rsvp_app.dev/users/login/",
+          url: "https://ancient-chamber-4889.herokuapp.com/users/login/",
           type: "POST",
           data: {
 
@@ -188,12 +188,12 @@ var UserProfile = Backbone.View.extend({
 
 //we are setting up an event "collection" of events (Backbone does this)
 var Events = Backbone.Collection.extend({
-  url: "http://api.rsvp_app.dev/events.json"
+  url: "https://ancient-chamber-4889.herokuapp.com/events.json"
 });
 
 // we are setting up an event "Model"
 var Event = Backbone.Model.extend({
-  urlRoot:"http://api.rsvp_app.dev/events"
+  urlRoot:"https://ancient-chamber-4889.herokuapp.com/events"
 });
 
 // we are setting up an event "View", using a key value pair - Eventlist is to show all evetss
