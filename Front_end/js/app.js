@@ -12,12 +12,15 @@ $.ajaxSetup({
 
 //variables for Events 
 var eventListTemplate;
-// var editEventTemplate;
+var editEventTemplate;
 var newEventTemplate;
 var individualEventTemplate;
 var pubIndividualEventTemplate;
 var findEventsTemplate; 
-
+var messageHostTemplate;
+var inviteGuestsTemplate;
+var showRsvpTemplate;
+var wantsInviteTemplate;
 
 //variables for Users
 var loginTemplate;
@@ -36,14 +39,28 @@ var userProfileTemplate;
 
   var pubIndividualEventTemplateSource = $("#pub-view-individual-event-template").html();
   pubIndividualEventTemplate = Handlebars.compile(pubIndividualEventTemplateSource);
-  // var editEventTemplateSource = $("#edit-event-template").html();
-  // editEventTemplate = Handlebars.compile(editEventTemplateSource);
+  
+  var editEventTemplateSource = $("#edit-event-template").html();
+  editEventTemplate = Handlebars.compile(editEventTemplateSource);
 
   var newEventTemplateSource = $("#new-event-template").html();
   newEventTemplate = Handlebars.compile(newEventTemplateSource);
 
   var findEventsTemplateSource = $("#find-events-template").html();
   findEventsTemplate = Handlebars.compile(findEventsTemplateSource);
+
+  var messageHostTemplateSource = $("#message-host-template").html();
+  messageHostTemplate = Handlebars.compile(messageHostTemplateSource);
+
+  var inviteGuestsTemplateSource = $("#invite-guests-template").html();
+  inviteGuestsTemplate = Handlebars.compile(inviteGuestsTemplateSource);
+
+  var showRsvpTemplateSource = $("#rspvd-guests-template").html();
+  showRsvpTemplate = Handlebars.compile(showRsvpTemplateSource);
+
+  var wantsInviteTemplateSource = $("#wants-invite-template").html();
+  wantsInviteTemplate = Handlebars.compile(wantsInviteTemplateSource);
+
 })();
 
 //Compile all templates on document ready for Users
@@ -302,65 +319,61 @@ var FindEvents = Backbone.View.extend({
   // }
 });
 
-// //Set up edit Book View
-// var EditBook = Backbone.View.extend({
-//   el: "#container",
-//   render: function(id) {
-//     var book = new Book({
-//       id: id
-//     });
+var EditEvent = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = editEventTemplate();
 
-// //grab things from database using backbone (fetch is backbone specific)
-// book.fetch({
-//   success: function(){
-//     var html = editBookTemplate({
-//             //gettig the book info and passing it in
-//             bookInfo: book
-//           });
-//     $("#container").html(html);
-//   }
-// });
-// },
-// events: {
-//   "click .submit-book-edits": "editBook",
-//   "click .delete-book": "deleteBook"
-// },
-// editBook: function(event) {
-//   var that = this;
-//   var book = new Book();
-//   var bookInfo = {
-//     id: event.target.id,
-//     title: $("#edit-title").val(),
-//     author: $("#edit-author").val(),
-//     release_date: $("#edit-release").val(),
-//     image: $("#edit-image").val()
-//   };
-//   event.save(eventInfo, {
-//     success: function() {
-//       router.navigate("/", {
-//         trigger :true
-//       });
-//       that.undelegateEvents();
-//     }
-//   });
-// },
-// deleteEvent: function(event){
-//   var that = this;
-//           // we need to instantiate the event with the id
-//           var event = new Event({
-//           id: event.target.id
-//         });
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+  // key value pair of the event object
+  // "saveEvent" in quotes is backbone specific syntax for key value pairs
+  // events: {
+  //   "click #submit-find-event": ""
+  // }
+});
 
-// event.destroy ({
-//   success: function() {
-//     router.navigate("/", {
-//       trigger: true
-//     });
-//     that.undelegateEvents();
-//       }
-//     });
-//   }
-// });
+var MessageHost = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = messageHostTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
+var InviteGuests = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = inviteGuestsTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
+var ShowRsvp = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = showRsvpTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
+var WantsInvite = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = wantsInviteTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
 
 
 
@@ -373,15 +386,21 @@ var Router = Backbone.Router.extend({
   routes: {
     "":"login",
     "allEvents":"all_events",
-    "edit/:id":"edit_event",
+    // "edit/:id":"edit_event",
+
+    "edit":"edit_event",
     "new":"new_event",
     "show_event/:id":"show_event",
     // "showPrivate/:id":"show_priv",
     "find-events":"find_events",
     "add":"add_event",
+
+    "message-host":"message_host",
     
-    "invite/:id":"invite_guests",
-    "showRSVP/:id":"show_rsvps",
+    // "invite/:id":"invite_guests",
+    "invite":"invite_guests",
+    "showRSVPs":"show_rsvps",
+    "wants-invite":"wants_invite",
 
     // "login":"login",
     "login_submit": "login_submit",
@@ -389,7 +408,8 @@ var Router = Backbone.Router.extend({
 
     "editUser/:id":"edit-user",
     "newUser":"new_user",
-    "show_profile/:id":"show_profile"
+    // "show_profile/:id":"show_profile"
+    "show-profile":"show_profile"
 
   },
 
@@ -427,9 +447,9 @@ var Router = Backbone.Router.extend({
   }, 
 
 // Defining a route for User Profile 
-  show_profile: function(id) {
+  show_profile: function() {
     var newUserProfile = new UserProfile();
-    newUserProfile.render(id);
+    newUserProfile.render();
     $("#container").trigger("create");
   }, 
 
@@ -438,6 +458,40 @@ var Router = Backbone.Router.extend({
     var newFindEvents = new FindEvents();
     newFindEvents.render();
     $("#container").trigger("create");
+  },
+
+  //Defining a route for Message Host 
+  message_host: function(){
+    var newMessageHost = new MessageHost();
+    newMessageHost.render();
+    $("#container").trigger("create");
+  }, 
+
+  //Defininig a route for Edit Event 
+  edit_event: function() {
+    var newEditEvent = new EditEvent();
+    newEditEvent.render();
+     $("#container").trigger("create");
+  },
+
+  //Defining a route for Invite Guests
+  invite_guests: function(){
+    var newInviteGuests = new InviteGuests();
+    newInviteGuests.render();
+    $("#container").trigger("create");
+  }, 
+
+  //Defining a route to Show RSVPS
+  show_rsvps: function(){
+    var newShowRsvp = new ShowRsvp();
+    newShowRsvp.render();
+    $("#container").trigger("create");
+  }, 
+
+  wants_invite: function(){
+    var newWantsInvite = new WantsInvite();
+    newWantsInvite.render();
+     $("#container").trigger("create");
   }
 
 });

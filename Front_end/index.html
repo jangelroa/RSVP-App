@@ -149,7 +149,7 @@
            <ul data-role="listview"  data-inset="true">
 
               <li><input type="text" placeholder="Past your code here"/></li>
-              <li> <a href="#event_coded_page" data-role ="button" id = "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Code</a></li>
+              <li> <a href="#allEvents" data-role ="button" id = "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Code</a></li>
 
 
             </ul>
@@ -157,7 +157,7 @@
             <h3>Look for events with the following keywords (within 30 mile radius):</h3>
             <ul data-role="listview"  data-inset="true">
              <li><input type="text" placeholder="Separate your words with SPACES "/></li>
-              <li> <a href="#event-list" data-role ="button" id="submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
+              <li> <a href="#allEvents" data-role ="button" id="submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
              </ul>
 
 
@@ -175,7 +175,7 @@
             </li>
 
             <li><input type="text" placeholder="Separate your words with SPACES "/></li>
-              <li> <a href="#event-list" data-role ="button" id= "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
+              <li> <a href="#allEvents" data-role ="button" id= "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
              </ul>
     </div>
 
@@ -185,7 +185,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -223,7 +223,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -233,50 +233,50 @@
 <!--/Event List Page-->
 
 <!--RSVP Guest List Page-->
-<!-- div data-role="page" id="rsvpd-guests">
+<script type="x-handlebars-template" id="rspvd-guests-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
-    <h1>RSVP'd Guest List</h1>
+    <a href="#edit" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <h1>RSVPd Guest List</h1>
   </div>
   <div data-role="content">
     <ul id="event-list-items" data-role="listview">
       <li>
           <img src="images/billgates.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Bill Gates </h3>
       </li>
 
        <li>
           <img src="images/markzuckerberg.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Mark Zuckerberg </h3>
       </li>
        <li>
           <img src="images/pamelaanderson.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Pamela Anderson</h3>
       </li>
 
        <li>
           <img src="images/scarlettjo.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Scarlett Johannson </h3>
       </li>
     </ul>
   </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!--close RSVP Guest List Page-->
 
 <!--Wants Invite List Page-->
-<!-- <div data-role="page" id="wants-invite">
+<script type="x-handlebars-template" id="wants-invite-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#edit" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Wants an Invite</h1>
   </div>
   <div data-role="content">
@@ -304,14 +304,14 @@
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+       <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!--close Wants Invite List Page-->
 
 <!-- Private Individual Event-Code View -->
@@ -343,7 +343,7 @@
 
     </div>
 
-    <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am coming! </a>
+    <a href="#allEvents" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am coming! </a>
 
  <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
@@ -351,7 +351,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -398,7 +398,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -490,7 +490,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -501,9 +501,9 @@
 
 <!-- Edit Event View -->
 
-<!-- <div data-role="page" id="edit-event">
+<script type="x-handlebars-template" id="edit-event-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#show-profile" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>View / Edit Event </h2>
   </div>
   <div data-role="content">
@@ -565,13 +565,13 @@
     </div>
     <div class="margin-top-20">
 
-    <a href="#user-profile
+    <a href="#allEvents
        " data-role="button" data-theme="b" data-icon = "edit" data-iconpos = "right" data-theme = "b">Save Updated Event Details</a>
       <p> Guests will see your this updated event in their RSVP App</p>
 
-      <a href="#invite-guests" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
+      <a href="#invite" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
 
-      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVP'ed for this event?</a>
+      <a href="#showRSVPs" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVPed for this event?</a>
 
       <a href="#wants-invite" data-role="button" data-theme="b" data-icon = "alert" data-iconpos = "right" data-theme = "b">Who wants to be invited?</a>
     </div>
@@ -580,15 +580,15 @@
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
 
-</div> -->
+</script>
 <!-- close Edit Event View -->
 
 <!-- User Profile View -->
@@ -612,7 +612,7 @@
       <div class="ui-block-b"><strong>Picture: </strong> N/A</div>
     </div>
 
-    <div>  <a href="#user-profile
+    <div>  <a href="#allEvents
        " data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Save Updated User Information </a>
     </div>
   </div>
@@ -622,18 +622,18 @@
   <h3> Events Created by You </h3>
   <ul id="event-list-items" data-role="listview">
       <li>
-        <a href="#edit-event" data-icon="carat-r">
+        <a href="#edit" data-icon="carat-r">
           <img src="images/legs.jpg">
-          <h3> Name of Event </h3>
-          <p>Description text</p>
+          <h3> Event: Naughty Xmas Party </h3>
+          <p>Description:  Guess what is going to happen...</p>
         </a>
       </li>
 
       <li>
-        <a href="#edit-event" data-icon="carat-r">
+        <a href="#edit" data-icon="carat-r">
           <img src="images/red_lips.jpg">
-          <h3> Name of Event </h3>
-          <p>Description text</p>
+          <h3> Event: Kiss Me Party </h3>
+          <p>Description:  It will BLOW your mind!</p>
         </a>
       </li>
       </ul>
@@ -644,16 +644,16 @@
             <li>
               <a href="#individual-event" data-icon="carat-r">
                 <img src="images/jason.jpg">
-                <h3> Name of Event </h3>
-                <p>Description text</p>
+                <h3> Event: Wrestling Party with Jason Statham </h3>
+                <p>Description: Hmmmmmm...</p>
               </a>
             </li>
 
             <li>
               <a href="#individual-event" data-icon="carat-r">
                 <img src="images/michael.jpg">
-                <h3> Name of Event </h3>
-                <p>Description text</p>
+                <h3> Event:  Making cake with Michael Fassbender</h3>
+                <p>Description: Yummmmmy..</p>
               </a>
             </li>
             </ul>
@@ -667,7 +667,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -676,9 +676,9 @@
 
 <!-- Invite Guests View -->
 
-<!-- <div data-role="page" id="invite-guests">
+<script type="x-handlebars-template" id="invite-guests-template">
   <div data-role="header" data-theme="b">
-   <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+   <a href="#edit" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Invite Guests </h2>
   </div>
   <div role="main" class="ui-content">
@@ -703,28 +703,28 @@
     </div>
 
     <div>
-    <a href="#user-profile" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Invite Guests Now!</a>
+    <a href="#show-profile" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Invite Guests Now!</a>
     </div>
 
     </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!-- close Invite Guests View  -->
 
 <!-- Send Message to Host View -->
 
-<!-- <div data-role="page" id="message-host">
+<script type="x-handlebars-template" id="message-host-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Message to Host </h2>
   </div>
   <div role="main" class="ui-content">
@@ -741,20 +741,20 @@
     </div>
 
     <div>
-      <a href="#user-profile" data-role="button" data-theme="b" data-icon = "mail" data-iconpos = "right" data-theme = "b">Send Message to Host for Invite</a>
+      <a href="#allEvents" data-role="button" data-theme="b" data-icon = "mail" data-iconpos = "right" data-theme = "b">Send Message to Host for Invite</a>
     </div>
     </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!-- close Send Message to Host View  -->
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
