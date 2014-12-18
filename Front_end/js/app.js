@@ -12,12 +12,13 @@ $.ajaxSetup({
 
 //variables for Events 
 var eventListTemplate;
-// var editEventTemplate;
+var editEventTemplate;
 var newEventTemplate;
 var individualEventTemplate;
 var pubIndividualEventTemplate;
 var findEventsTemplate; 
 var messageHostTemplate;
+var inviteGuestsTemplate;
 
 
 //variables for Users
@@ -37,8 +38,9 @@ var userProfileTemplate;
 
   var pubIndividualEventTemplateSource = $("#pub-view-individual-event-template").html();
   pubIndividualEventTemplate = Handlebars.compile(pubIndividualEventTemplateSource);
-  // var editEventTemplateSource = $("#edit-event-template").html();
-  // editEventTemplate = Handlebars.compile(editEventTemplateSource);
+  
+  var editEventTemplateSource = $("#edit-event-template").html();
+  editEventTemplate = Handlebars.compile(editEventTemplateSource);
 
   var newEventTemplateSource = $("#new-event-template").html();
   newEventTemplate = Handlebars.compile(newEventTemplateSource);
@@ -48,6 +50,9 @@ var userProfileTemplate;
 
   var messageHostTemplateSource = $("#message-host-template").html();
   messageHostTemplate = Handlebars.compile(messageHostTemplateSource);
+
+  var inviteGuestsTemplateSource = $("#invite-guests-template").html();
+  inviteGuestsTemplate = Handlebars.compile(inviteGuestsTemplateSource);
 
 })();
 
@@ -307,6 +312,21 @@ var FindEvents = Backbone.View.extend({
   // }
 });
 
+var EditEvent = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = editEventTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+  // key value pair of the event object
+  // "saveEvent" in quotes is backbone specific syntax for key value pairs
+  // events: {
+  //   "click #submit-find-event": ""
+  // }
+});
+
 var MessageHost = Backbone.View.extend({
   el: "#container",
   render: function (){
@@ -316,6 +336,18 @@ var MessageHost = Backbone.View.extend({
     $("#container").trigger("create");
   }
 });
+
+var InviteGuests = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = inviteGuestsTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
+
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
 //   el: "#container",
@@ -387,7 +419,9 @@ var Router = Backbone.Router.extend({
   routes: {
     "":"login",
     "allEvents":"all_events",
-    "edit/:id":"edit_event",
+    // "edit/:id":"edit_event",
+
+    "edit":"edit_event",
     "new":"new_event",
     "show_event/:id":"show_event",
     // "showPrivate/:id":"show_priv",
@@ -396,7 +430,8 @@ var Router = Backbone.Router.extend({
 
     "message-host":"message_host",
     
-    "invite/:id":"invite_guests",
+    // "invite/:id":"invite_guests",
+    "invite":"invite_guests",
     "showRSVP/:id":"show_rsvps",
 
     // "login":"login",
@@ -405,7 +440,8 @@ var Router = Backbone.Router.extend({
 
     "editUser/:id":"edit-user",
     "newUser":"new_user",
-    "show_profile/:id":"show_profile"
+    // "show_profile/:id":"show_profile"
+    "show-profile":"show_profile"
 
   },
 
@@ -443,9 +479,9 @@ var Router = Backbone.Router.extend({
   }, 
 
 // Defining a route for User Profile 
-  show_profile: function(id) {
+  show_profile: function() {
     var newUserProfile = new UserProfile();
-    newUserProfile.render(id);
+    newUserProfile.render();
     $("#container").trigger("create");
   }, 
 
@@ -460,6 +496,20 @@ var Router = Backbone.Router.extend({
   message_host: function(){
     var newMessageHost = new MessageHost();
     newMessageHost.render();
+    $("#container").trigger("create");
+  }, 
+
+  //Defininig a route for Edit Event 
+  edit_event: function() {
+    var newEditEvent = new EditEvent();
+    newEditEvent.render();
+     $("#container").trigger("create");
+  },
+
+  //Defining a route for Invite Guests
+  invite_guests: function(){
+    var newInviteGuests = new InviteGuests();
+    newInviteGuests.render();
     $("#container").trigger("create");
   }
 
