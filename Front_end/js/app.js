@@ -12,8 +12,9 @@ $.ajaxSetup({
 
 var eventListTemplate;
 // var editEventTemplate;
-// var newEventTemplate;
+var newEventTemplate;
 var individualEventTemplate;
+var pubIndividualEventTemplate;
 
 var loginTemplate;
 // var editUseremplate;
@@ -28,11 +29,13 @@ var newUserTemplate;
   var individualEventTemplateSource = $("#individual-event-template").html();
   individualEventTemplate = Handlebars.compile(individualEventTemplateSource);
 
+  var pubIndividualEventTemplateSource = $("#pub-view-individual-event-template").html();
+  pubIndividualEventTemplate = Handlebars.compile(pubIndividualEventTemplateSource);
   // var editEventTemplateSource = $("#edit-event-template").html();
   // editEventTemplate = Handlebars.compile(editEventTemplateSource);
 
-  // var newEventTemplateSource = $("#new-event-template").html();
-  // newEventTemplate = Handlebars.compile(newEventTemplateSource);
+  var newEventTemplateSource = $("#new-event-template").html();
+  newEventTemplate = Handlebars.compile(newEventTemplateSource);
 })();
 
 //Compile all templates on document ready for Users
@@ -208,7 +211,12 @@ var ShowIndividualEvent = Backbone.View.extend({
     event_info.fetch({
       success: function() {
         if (event_info.attributes.publico) {
-          console.log("Public event");
+          var html = pubIndividualEventTemplate({
+            eventInfo: event_info
+          });
+
+          $("#container").html(html);
+          $("#container").trigger("create");
         } else {
           var html = individualEventTemplate({
             eventInfo: event_info
@@ -222,91 +230,46 @@ var ShowIndividualEvent = Backbone.View.extend({
   }
 });
 
-
-//Set up login View
-var LoginView = Backbone.View.extend({
+// Set up a Create New Event View
+var NewEvent = Backbone.View.extend({
   el: "#container",
-  render: function() {
-    var html = loginTemplate();
-    $(this.el).html(html);
-  },
+  render: function (){
+    var html = newEventTemplate();
 
+    $("#container").html(html);
+  },
+  // key value pair of the event object
+  // "saveEvent" in quotes is backbone specific syntax for key value pairs
   events: {
-    "click #login_submit": "login_submit"
+    "click #submit-new-event": "saveEvent"
   },
+  saveEvent: function(event) {
+    event.preventDefault();
+    var that = this;
+    var new_event = new Event();
 
+    var eventInfo = {
+      title: $("#new-title").val(),
+      public_descripton : $("#new-public_description").val(),
+      private_descripton : $("#new-private_description").val(),
+      date : $("#new-date").val(),
+      time : $("#new-time").val(),
+      location : $("#new-location").val(),
+      max_attendances : $("#new-max_attendances").val(),
+      event_picture_url: $("#new-event_picture_url").val(),
+      publico : $("#new-publico").val(),
+    };
 
-  // Defining a login_submit function
-  login_submit: function(event) {
-    // $('#login_submit').submit(function(event){
-      event.preventDefault();
-      $.ajax({
-          url: "http://api.rsvp_app.dev/users/login/",
-          type: "POST",
-          data: {
-
-              username: $("#login_username").val(),
-              password: $("#login_password").val()
-
-          } ,
-          success: function(data) {
-            sessionStorage.setItem("auth_token", data.auth_token);
-            sessionStorage.setItem("user_id", data.id);
-            // console.log(data.auth_token);
-            router.navigate('allEvents', {trigger: true});
-
-            // alert("User Log");
-            // console.log(data);
-            // WORKING
-
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            alert("Username and Password don't match");
-            // console.log(errorThrown);
-
-            // THE USERNAME AND PASSWORD DONT MATCH
-          }
-        });
-
-    // });
+      new_event.save(eventInfo, {
+        success: function() {
+            router.navigate("#allEvents", {
+              trigger: true
+            });
+            that.undelegateEvents();
+        }
+      });
   }
-
 });
-
-
-
-//Set up a Create New Event View
-// var NewEvent = Backbone.View.extend({
-//   el: "#container",
-//   render: function (){
-//     var html = newEventTemplate();
-
-//     $("#container").html(html);
-//   },
-//   // key value pair of the event object
-//   // "saveEvent" in quotes is backbone specific syntax for key value pairs
-//   events: {
-//     "click #submit-event": "saveEvent"
-//   },
-//   saveBook: function() {
-//     var that = this;
-//     var book = new Book();
-//     var bookInfo = {
-//       title: $("#new-title").val(),
-//       author: $("#new-author").val(),
-//       release_date: $("#new-release").val(),
-//       image: $("#new-image").val()
-//     };
-//       book.save(bookInfo, {
-//         success: function() {
-//             router.navigate("/", {
-//               trigger: true
-//             });
-//             that.undelegateEvents();
-//         }
-//       });
-//   }
-// });
 
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
@@ -419,16 +382,16 @@ var Router = Backbone.Router.extend({
   $("#container").trigger("create");
   }, 
 
-//defining login route
-  // login: function() {
-  //   var login = new LoginView();
-  //   login.render();
-  // },
-
   //defining new_user route
   new_user: function() {
     var newUserSignup = new NewUserSignup();
     newUserSignup.render();
+    $("#container").trigger("create");
+  }, 
+//defining a new event (creating a new event) route
+  new_event: function() {
+    var newEvent = new NewEvent();
+    newEvent.render();
     $("#container").trigger("create");
   }
 });
