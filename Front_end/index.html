@@ -127,7 +127,7 @@
     <div class="margin-top-20">
 
 
-      <a href="#allEvents" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am ready to submit...</a>
+      <a href="#allEvents" id = "submit_newUser" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am ready to submit...</a>
 
     </div>
   </div>
@@ -220,9 +220,9 @@
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
@@ -318,7 +318,7 @@
 
 <script type="x-handlebars-template" id="individual-event-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Yes, please come....</h1>
   </div>
 
@@ -327,14 +327,14 @@
       <div class="ui-grid-a">
         <h3> Event: {{eventInfo.attributes.title}}</h3>
         <div class="ui-block-a"><img src="{{eventInfo.attributes.event_picture_url}}" style = width: 100px, height = 100px/></div>
-        <div class="ui-block-b"><strong>Location: TBD</strong> Check for updated location information in 1 week!</div>
+        <div class="ui-block-b"><strong>Location: {{eventInfo.attributes.location}}</div>
       </div>
   </div>
 
   <div role="main" class="ui-content">
       <div class="ui-grid-a">
-        <div class="ui-block-a"><strong> Save the date:</strong> </div>
-        <div class="ui-block-b"><strong>Time: </strong> </div>
+        <div class="ui-block-a"><strong> Save the date: {{eventInfo.attributes.date}}</strong> </div>
+        <div class="ui-block-b"><strong>Time: {{eventInfo.attributes.time}}</strong> </div>
       </div>
   </div>
     <div role="main" class="ui-content">
@@ -343,33 +343,37 @@
 
     </div>
 
-    <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I'm coming! </a>
+    <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am coming! </a>
 
  <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div>
+
+
+</script>
+
 <!-- close Private Individual Event-Code View -->
 
 <!-- Public View of Individual Private Event -->
-<!-- <div data-role="page" id="pub-individual-event">
+<script type="x-handlebars-template" id="pub-view-individual-event-template">
+
   <div data-role="header" data-theme="b">
-    <a data-role="button" data-icon="back" data-rel="back" data-theme="a">Back</a>
+     <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Private Event</h1>
   </div>
 
 
     <div role="main" class="ui-content">
       <div class="ui-grid-a">
-        <h3> Event Name:  </h3>
-        <div><img src="images/red_lips.jpg" style = width: 200px, height = 200px/></div>
+        <h3> Event Name: {{eventInfo.attributes.title}} </h3>
+        <div><img src="{{eventInfo.attributes.event_picture_url}}" style = width: 200px, height = 200px/></div>
 
       </div>
   </div>
@@ -382,7 +386,7 @@
   </div>
     <div role="main" class="ui-content">
       <h3> Description:  </h3>
-      <p> Here is a short description of the event.  This event is a ...Spectactular. Located in the heart of the heart of the heart of the city, we are throwing the biggest New Year's Eve Bash.   </p>
+      <p> {{eventInfo.attributes.public_description}}   </p>
 
     </div>
 
@@ -391,22 +395,22 @@
  <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
   </script>
 
-<!-- close Public View of Individual Private Event- -->
+<!-- close Public View of Individual Private Event -->
 
-<!-- Create Event View -->
+ <!-- Create Event View  -->
+<script type="x-handlebars-template" id="new-event-template">
 
-<!-- <div data-role="page" id="create-event">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+     <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Create New Event </h2>
   </div>
   <div data-role="content">
@@ -414,53 +418,59 @@
       Event Name
     </div>
     <div class="margin-top-20">
-      <input id="event_name" type="text" placeholder="Event Name" />
+      <input id="new-title" type="text" placeholder="Event Name" />
     </div>
     <div class="margin-top-20 bold">
        Description (public view)
     </div>
     <div class="margin-top-20">
-      <textarea id="pub_desc" type="text" placeholder="Short Description (public view)"></textarea>
+      <textarea id="new-public_description" type="text" placeholder="Short Description (public view)"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Description (private view)
     </div>
     <div class="margin-top-20">
-      <textarea id="pub_desc" type="text" placeholder="Detailed Description (private view)"></textarea>
+      <textarea id="new-private_description" type="text" placeholder="Detailed Description (private view)"></textarea>
     </div>
     <div class="margin-top-20 bold">
       Date of Event
     </div>
     <div class="margin-top-20">
-      <input id="date" type="text" placeholder="mm/dd/yyyy" />
+      <input id="new-date" type="text" placeholder="mm/dd/yyyy" />
     </div>
     <div class="margin-top-20 bold">
       Time
     </div>
     <div class="margin-top-20">
-      <input id="time" type="text"  placeholder="00:00" />
+      <input id="new-time" type="text"  placeholder="00:00" />
+    </div>
+    <div class="margin-top-20 bold">
+      Address
+    </div>
+    <div class="margin-top-20">
+      <input id="new-location" type="text"  placeholder="1234 Main Street SF CA " />
     </div>
     <div class="margin-top-20 bold">
       Max # of guests (optional)
     </div>
     <div class="margin-top-20">
-      <input id="guests" type="text"  placeholder="1000" />
+      <input id="new-max_attendances" type="text"  placeholder="1000" />
     </div>
     <div class="margin-top-20 bold">
-      Picture (optional)
+      Picture URL (optional)
     </div>
     <div class="margin-top-20">
-      <input id="picture" type="text" placeholder="Picture" />
+      <input id="new-event_picture_url" type="text" placeholder="Picture URL" />
     </div>
 
     <div role="main" class="ui-content">
       <form>
         <fieldset data-role="controlgroup">
           <legend>Is your event...</legend>
-          <input type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
+          <input class = "new-publico" type="radio" name="private" id="radio-choice-1" value="choice-1" checked="checked">
           <label for="radio-choice-1"> Private </label>
 
-          <input type="radio" name="public" id="radio-choice-2" value="choice-2">
+          <input class = "new-publico" type="radio" name="public" id="radio-choice-2" value="choice-2">
           <label for="radio-choice-2">Public</label>
 
         </fieldset>
@@ -468,7 +478,7 @@
       </div>
     <div class="margin-top-20">
 
-      <a href="#profile" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Create my event!</a>
+      <a href="#allEvents" id = "submit-new-event" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Create my event!</a>
       <p> Go to your PROFILE, to invite guests to this event </p>
 
     </div>
@@ -477,17 +487,17 @@
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
         <li><a href="#user-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
 
-</div>
-   -->
-<!-- close Create Event View -->
+</script>
+  
+<!-- close Create Event View-->
 
 <!-- Edit Event View -->
 
