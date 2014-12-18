@@ -55,7 +55,7 @@ var Users = Backbone.Collection.extend({
 });
 
 // we are setting up an user "Model"
-var Event = Backbone.Model.extend({
+var User = Backbone.Model.extend({
   urlRoot:"http://api.rsvp_app.dev/users"
 });
 
@@ -110,63 +110,87 @@ var LoginView = Backbone.View.extend({
 
 });
 
-//Set up NEW USER signup  "View"
+//Set up NEW USER signup  View
 var NewUserSignup = Backbone.View.extend({
   el: "#container",
   render: function() {
     var html = newUserTemplate();
-    $(this.el).html(html);
-      // $("#container").html(html);
+   $("#container").html(html);
   },
-
+  // key value pair of the event object
+  // "saveUser" in quotes is backbone specific syntax for key value pairs
   events: {
 
-    "click #submit_newUser": "new_user"
+    "click #submit_newUser": "saveUser"
   },
+  saveUser: function(event){
+    event.preventDefault();
+    var that = this;
+    var new_user = new User();
 
-  // Defining a new_user function
-  new_user: function(event) {
-    // $('#new_user').submit(function(event){
-      event.preventDefault();
-      $.ajax({
-          url: "http://api.rsvp_app.dev/users/users",
-          type: "POST",
-          data: {
-          user: {
-              firstname: $('#new_user input[name=firstname]').val(),
-              lastname: $('#new_user input[name=lastname]').val(),
-              email: $('#new_user input[name=email]').val(),
-              username: $('#new_user input[name=username]').val(),
-              password: $('#new_user input[name=lasttname]').val(),
-              picture_url: $('#new_user input[name=picture_url').val(),
-            }
+    var userInfo = {
+      firstname: $("#new-firstname").val(),
+      lastname : $("#new-lastname").val(),
+      email : $("#new-email").val(),
+      username: $("#new-username").val(),
+      password : $("#new-password ").val(),
+      picture_url: $("#new-picture_url").val()
+     
+    };
 
-
-          } ,
-          success: function(data) {
-            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-            // sessionStorage.setItem("user_id", data.responseJSON.id);
-            router.navigate('allEvents', {trigger: true});
-            // var html = loginTemplate({loginData: data});
-
-            alert("New User Created");
-            console.log(data);
-            // WORKING
-
-            // $("#container").html(html);
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            alert("Something went wrong");
-            // console.log(errorThrown);
-
-            // THE USERNAME AND PASSWORD DONT MATCH
-          }
+    new_user.save(userInfo, {
+      success: function() {
+        router.navigate("#allEvents", {
+          trigger:true
         });
-
-    // });
+        that.undelegateEvents();
+      }
+    });
   }
-
 });
+  ////////// Defining a new_user function-- code from Angel//////
+//   new_user: function(event) {
+//     // $('#new_user').submit(function(event){
+//       event.preventDefault();
+//       $.ajax({
+//           url: "http://api.rsvp_app.dev/users/users",
+//           type: "POST",
+//           data: {
+//           user: {
+//               firstname: $('#new_user input[name=firstname]').val(),
+//               lastname: $('#new_user input[name=lastname]').val(),
+//               email: $('#new_user input[name=email]').val(),
+//               username: $('#new_user input[name=username]').val(),
+//               password: $('#new_user input[name=lasttname]').val(),
+//               picture_url: $('#new_user input[name=picture_url').val(),
+//             }
+
+
+//           } ,
+//           success: function(data) {
+//             // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
+//             // sessionStorage.setItem("user_id", data.responseJSON.id);
+//             router.navigate('allEvents', {trigger: true});
+//             // var html = loginTemplate({loginData: data});
+
+//             alert("New User Created");
+//             console.log(data);
+//             // WORKING
+
+//             // $("#container").html(html);
+//           },
+//           error: function(jqXHR, textStatus, errorThrown) {
+//             alert("Something went wrong");
+//             // console.log(errorThrown);
+
+//             // THE USERNAME AND PASSWORD DONT MATCH
+//           }
+//         });
+
+//     // });
+//   }
+
+// });
 
 
 // This section is all EVENTS related *************************************
@@ -257,7 +281,7 @@ var NewEvent = Backbone.View.extend({
       location : $("#new-location").val(),
       max_attendances : $("#new-max_attendances").val(),
       event_picture_url: $("#new-event_picture_url").val(),
-      publico : $("#new-publico").val(),
+      publico : $(".new-publico").val(),
     };
 
       new_event.save(eventInfo, {
