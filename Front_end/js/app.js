@@ -62,7 +62,6 @@ var LoginView = Backbone.View.extend({
   render: function() {
     var html = loginTemplate();
     $(this.el).html(html);
-    $("#container").trigger("create");
   },
 
   events: {
@@ -88,7 +87,7 @@ var LoginView = Backbone.View.extend({
             sessionStorage.setItem("auth_token", data.auth_token);
             sessionStorage.setItem("user_id", data.id);
             // console.log(data.auth_token);
-            router.navigate('', {trigger: true});
+            router.navigate('allEvents', {trigger: true});
 
             // alert("User Log");
             // console.log(data);
@@ -115,7 +114,6 @@ var NewUserSignup = Backbone.View.extend({
     var html = newUserTemplate();
     $(this.el).html(html);
       // $("#container").html(html);
-      $("#container").trigger("create");
   },
 
   events: {
@@ -145,7 +143,7 @@ var NewUserSignup = Backbone.View.extend({
           success: function(data) {
             // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
             // sessionStorage.setItem("user_id", data.responseJSON.id);
-            router.navigate('', {trigger: true});
+            router.navigate('allEvents', {trigger: true});
             // var html = loginTemplate({loginData: data});
 
             alert("New User Created");
@@ -234,7 +232,7 @@ var LoginView = Backbone.View.extend({
   },
 
   events: {
-    "click #login_submit": "login_submit",
+    "click #login_submit": "login_submit"
   },
 
 
@@ -255,7 +253,7 @@ var LoginView = Backbone.View.extend({
             sessionStorage.setItem("auth_token", data.auth_token);
             sessionStorage.setItem("user_id", data.id);
             // console.log(data.auth_token);
-            router.navigate('', {trigger: true});
+            router.navigate('allEvents', {trigger: true});
 
             // alert("User Log");
             // console.log(data);
@@ -379,7 +377,7 @@ var events = new Events();
 
 var Router = Backbone.Router.extend({
   routes: {
-    "":"index",
+    "":"login",
     "allEvents":"all_events",
     "edit/:id":"edit_event",
     "new":"new_event",
@@ -387,11 +385,11 @@ var Router = Backbone.Router.extend({
     // "showPrivate/:id":"show_priv",
     "findEvents":"find_events",
     "add":"add_event",
-
+    
     "invite/:id":"invite_guests",
     "showRSVP/:id":"show_rsvps",
 
-    "login":"login",
+    // "login":"login",
     "login_submit": "login_submit",
 
 
@@ -401,27 +399,37 @@ var Router = Backbone.Router.extend({
 
   },
 
-//Defining index route
-  index: function() {
+//Defining index route 
+   login: function() {
+    var login = new LoginView();
+    login.render();
+    $("#container").trigger("create");
+  },
+//Defining the all_events List route
+  all_events: function() {
     var eventlist = new EventList();
     eventlist.render();
+    $("#container").trigger("create");
   },
+
 //Definining the show Individual Event Route
   show_event: function(id) {
   var showIndividualEvent = new ShowIndividualEvent();
   showIndividualEvent.render(id);
-  },
+  $("#container").trigger("create");
+  }, 
 
 //defining login route
-  login: function() {
-    var login = new LoginView();
-    login.render();
-  },
+  // login: function() {
+  //   var login = new LoginView();
+  //   login.render();
+  // },
 
   //defining new_user route
   new_user: function() {
     var newUserSignup = new NewUserSignup();
     newUserSignup.render();
+    $("#container").trigger("create");
   }
 });
 
