@@ -10,15 +10,20 @@ $.ajaxSetup({
   }
 });
 
+//variables for Events 
 var eventListTemplate;
 // var editEventTemplate;
 var newEventTemplate;
 var individualEventTemplate;
 var pubIndividualEventTemplate;
+var findEventsTemplate; 
 
+
+//variables for Users
 var loginTemplate;
 // var editUseremplate;
 var newUserTemplate;
+var userProfileTemplate;
 
 //Compile all templates on document ready for Events
 
@@ -36,6 +41,9 @@ var newUserTemplate;
 
   var newEventTemplateSource = $("#new-event-template").html();
   newEventTemplate = Handlebars.compile(newEventTemplateSource);
+
+  var findEventsTemplateSource = $("#find-events-template").html();
+  findEventsTemplate = Handlebars.compile(findEventsTemplateSource);
 })();
 
 //Compile all templates on document ready for Users
@@ -45,18 +53,22 @@ var newUserTemplate;
 
   var newUserTemplateSource = $("#new-user-template").html();
   newUserTemplate = Handlebars.compile(newUserTemplateSource);
+
+  var userProfileTemplateSource =$("#user-profile-template").html();
+  userProfileTemplate = Handlebars.compile(userProfileTemplateSource);
+
 })();
 
 // This section is all USERS related **************************************
 
 //we are setting up an event "collection" of users (Backbone does this)
 var Users = Backbone.Collection.extend({
-  url: "http://api.rsvp_app.dev/users.json"
+  url: "https://ancient-chamber-4889.herokuapp.com/users.json"
 });
 
 // we are setting up an user "Model"
-var Event = Backbone.Model.extend({
-  urlRoot:"http://api.rsvp_app.dev/users"
+var User = Backbone.Model.extend({
+  urlRoot:"https://ancient-chamber-4889.herokuapp.com/users"
 });
 
 //Set up user login "View"
@@ -78,7 +90,7 @@ var LoginView = Backbone.View.extend({
     // $('#login_submit').submit(function(event){
       event.preventDefault();
       $.ajax({
-          url: "http://api.rsvp_app.dev/users/login/",
+          url: "https://ancient-chamber-4889.herokuapp.com/users/login/",
           type: "POST",
           data: {
 
@@ -110,75 +122,78 @@ var LoginView = Backbone.View.extend({
 
 });
 
-//Set up NEW USER signup  "View"
+//Set up NEW USER signup  View
 var NewUserSignup = Backbone.View.extend({
   el: "#container",
   render: function() {
     var html = newUserTemplate();
-    $(this.el).html(html);
-      // $("#container").html(html);
+   $("#container").html(html);
   },
-
+  // key value pair of the event object
+  // "saveUser" in quotes is backbone specific syntax for key value pairs
   events: {
 
-    "click #submit_newUser": "new_user"
+    "click #submit_newUser": "saveUser"
   },
+  saveUser: function(event){
+    event.preventDefault();
+    var that = this;
+    var new_user = new User();
 
-  // Defining a new_user function
-  new_user: function(event) {
-    // $('#new_user').submit(function(event){
-      event.preventDefault();
-      $.ajax({
-          url: "http://api.rsvp_app.dev/users/users",
-          type: "POST",
-          data: {
-          user: {
-              firstname: $('#new_user input[name=firstname]').val(),
-              lastname: $('#new_user input[name=lastname]').val(),
-              email: $('#new_user input[name=email]').val(),
-              username: $('#new_user input[name=username]').val(),
-              password: $('#new_user input[name=lasttname]').val(),
-              picture_url: $('#new_user input[name=picture_url').val(),
-            }
+    var userInfo = {
+      firstname: $("#new-firstname").val(),
+      lastname : $("#new-lastname").val(),
+      email : $("#new-email").val(),
+      username: $("#new-username").val(),
+      password : $("#new-password ").val(),
+      picture_url: $("#new-picture_url").val()
+     
+    };
 
-
-          } ,
-          success: function(data) {
-            // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-            // sessionStorage.setItem("user_id", data.responseJSON.id);
-            router.navigate('allEvents', {trigger: true});
-            // var html = loginTemplate({loginData: data});
-
-            alert("New User Created");
-            console.log(data);
-            // WORKING
-
-            // $("#container").html(html);
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            alert("Something went wrong");
-            // console.log(errorThrown);
-
-            // THE USERNAME AND PASSWORD DONT MATCH
-          }
+    new_user.save(userInfo, {
+      success: function() {
+        router.navigate("#allEvents", {
+          trigger:true
         });
-
-    // });
+        that.undelegateEvents();
+      }
+    });
   }
-
 });
 
+// we are setting up an event "View", using a key value pair - Eventlist is to show all evetss
+var UserProfile = Backbone.View.extend({
+  el: "#container",
+  render: function() {
+    // var user_info = new User({
+    //   id: sessionStorage.getItem("user_id")
+    // });
+    //fetch is a function, through backbone, that accepts an object, uses the success error syntax
+      // var that = this;
+      // user_info.fetch({
+      //   success: function () {
+            var html = userProfileTemplate({
+              // userInfo: user_info
+          
+            });
+         
+            $("#container").html(html);
+            $("#container").trigger("create");
+      //   }
+      // });
+    }
+});
 
 // This section is all EVENTS related *************************************
 
 //we are setting up an event "collection" of events (Backbone does this)
 var Events = Backbone.Collection.extend({
-  url: "http://api.rsvp_app.dev/events.json"
+  url: "https://ancient-chamber-4889.herokuapp.com/events.json"
 });
 
 // we are setting up an event "Model"
 var Event = Backbone.Model.extend({
-  urlRoot:"http://api.rsvp_app.dev/events"
+  urlRoot:"https://ancient-chamber-4889.herokuapp.com/events"
 });
 
 // we are setting up an event "View", using a key value pair - Eventlist is to show all evetss
@@ -257,7 +272,7 @@ var NewEvent = Backbone.View.extend({
       location : $("#new-location").val(),
       max_attendances : $("#new-max_attendances").val(),
       event_picture_url: $("#new-event_picture_url").val(),
-      publico : $("#new-publico").val(),
+      publico : $(".new-publico").val(),
     };
 
       new_event.save(eventInfo, {
@@ -269,6 +284,22 @@ var NewEvent = Backbone.View.extend({
         }
       });
   }
+});
+
+// Set up a Find Events View
+var FindEvents = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = findEventsTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+  // key value pair of the event object
+  // "saveEvent" in quotes is backbone specific syntax for key value pairs
+  // events: {
+  //   "click #submit-find-event": ""
+  // }
 });
 
 // //Set up edit Book View
@@ -346,7 +377,7 @@ var Router = Backbone.Router.extend({
     "new":"new_event",
     "show_event/:id":"show_event",
     // "showPrivate/:id":"show_priv",
-    "findEvents":"find_events",
+    "find-events":"find_events",
     "add":"add_event",
     
     "invite/:id":"invite_guests",
@@ -358,7 +389,7 @@ var Router = Backbone.Router.extend({
 
     "editUser/:id":"edit-user",
     "newUser":"new_user",
-    "showProfile/:id":"show_profile"
+    "show_profile/:id":"show_profile"
 
   },
 
@@ -393,7 +424,22 @@ var Router = Backbone.Router.extend({
     var newEvent = new NewEvent();
     newEvent.render();
     $("#container").trigger("create");
+  }, 
+
+// Defining a route for User Profile 
+  show_profile: function(id) {
+    var newUserProfile = new UserProfile();
+    newUserProfile.render(id);
+    $("#container").trigger("create");
+  }, 
+
+  //Defining a route for Find Events 
+  find_events: function(){
+    var newFindEvents = new FindEvents();
+    newFindEvents.render();
+    $("#container").trigger("create");
   }
+
 });
 
 
