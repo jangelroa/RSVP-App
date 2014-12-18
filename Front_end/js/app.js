@@ -17,6 +17,7 @@ var newEventTemplate;
 var individualEventTemplate;
 var pubIndividualEventTemplate;
 var findEventsTemplate; 
+var messageHostTemplate;
 
 
 //variables for Users
@@ -44,6 +45,10 @@ var userProfileTemplate;
 
   var findEventsTemplateSource = $("#find-events-template").html();
   findEventsTemplate = Handlebars.compile(findEventsTemplateSource);
+
+  var messageHostTemplateSource = $("#message-host-template").html();
+  messageHostTemplate = Handlebars.compile(messageHostTemplateSource);
+
 })();
 
 //Compile all templates on document ready for Users
@@ -302,6 +307,15 @@ var FindEvents = Backbone.View.extend({
   // }
 });
 
+var MessageHost = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = messageHostTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
 //   el: "#container",
@@ -379,6 +393,8 @@ var Router = Backbone.Router.extend({
     // "showPrivate/:id":"show_priv",
     "find-events":"find_events",
     "add":"add_event",
+
+    "message-host":"message_host",
     
     "invite/:id":"invite_guests",
     "showRSVP/:id":"show_rsvps",
@@ -437,6 +453,13 @@ var Router = Backbone.Router.extend({
   find_events: function(){
     var newFindEvents = new FindEvents();
     newFindEvents.render();
+    $("#container").trigger("create");
+  },
+
+  //Defining a route for Message Host 
+  message_host: function(){
+    var newMessageHost = new MessageHost();
+    newMessageHost.render();
     $("#container").trigger("create");
   }
 

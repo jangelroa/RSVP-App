@@ -343,7 +343,7 @@
 
     </div>
 
-    <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am coming! </a>
+    <a href="#allEvents" data-role ="button" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">I am coming! </a>
 
  <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
@@ -722,9 +722,9 @@
 
 <!-- Send Message to Host View -->
 
-<!-- <div data-role="page" id="message-host">
+<script type="x-handlebars-template" id="message-host-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Message to Host </h2>
   </div>
   <div role="main" class="ui-content">
@@ -741,20 +741,20 @@
     </div>
 
     <div>
-      <a href="#user-profile" data-role="button" data-theme="b" data-icon = "mail" data-iconpos = "right" data-theme = "b">Send Message to Host for Invite</a>
+      <a href="#allEvents" data-role="button" data-theme="b" data-icon = "mail" data-iconpos = "right" data-theme = "b">Send Message to Host for Invite</a>
     </div>
     </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!-- close Send Message to Host View  -->
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
