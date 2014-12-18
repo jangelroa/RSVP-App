@@ -274,9 +274,9 @@
 <!--close RSVP Guest List Page-->
 
 <!--Wants Invite List Page-->
-<!-- <div data-role="page" id="wants-invite">
+<script type="x-handlebars-template" id="wants-invite-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#edit" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Wants an Invite</h1>
   </div>
   <div data-role="content">
@@ -304,14 +304,14 @@
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+       <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!--close Wants Invite List Page-->
 
 <!-- Private Individual Event-Code View -->
@@ -503,7 +503,7 @@
 
 <script type="x-handlebars-template" id="edit-event-template">
   <div data-role="header" data-theme="b">
-    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#show-profile" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>View / Edit Event </h2>
   </div>
   <div data-role="content">

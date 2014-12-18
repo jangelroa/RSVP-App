@@ -20,7 +20,7 @@ var findEventsTemplate;
 var messageHostTemplate;
 var inviteGuestsTemplate;
 var showRsvpTemplate;
-
+var wantsInviteTemplate;
 
 //variables for Users
 var loginTemplate;
@@ -57,6 +57,9 @@ var userProfileTemplate;
 
   var showRsvpTemplateSource = $("#rspvd-guests-template").html();
   showRsvpTemplate = Handlebars.compile(showRsvpTemplateSource);
+
+  var wantsInviteTemplateSource = $("#wants-invite-template").html();
+  wantsInviteTemplate = Handlebars.compile(wantsInviteTemplateSource);
 
 })();
 
@@ -361,6 +364,16 @@ var ShowRsvp = Backbone.View.extend({
   }
 });
 
+var WantsInvite = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = wantsInviteTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
 
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
@@ -447,6 +460,7 @@ var Router = Backbone.Router.extend({
     // "invite/:id":"invite_guests",
     "invite":"invite_guests",
     "showRSVPs":"show_rsvps",
+    "wants-invite":"wants_invite",
 
     // "login":"login",
     "login_submit": "login_submit",
@@ -532,6 +546,12 @@ var Router = Backbone.Router.extend({
     var newShowRsvp = new ShowRsvp();
     newShowRsvp.render();
     $("#container").trigger("create");
+  }, 
+
+  wants_invite: function(){
+    var newWantsInvite = new WantsInvite();
+    newWantsInvite.render();
+     $("#container").trigger("create");
   }
 
 });
