@@ -375,66 +375,6 @@ var WantsInvite = Backbone.View.extend({
 });
 
 
-// //Set up edit Book View
-// var EditBook = Backbone.View.extend({
-//   el: "#container",
-//   render: function(id) {
-//     var book = new Book({
-//       id: id
-//     });
-
-// //grab things from database using backbone (fetch is backbone specific)
-// book.fetch({
-//   success: function(){
-//     var html = editBookTemplate({
-//             //gettig the book info and passing it in
-//             bookInfo: book
-//           });
-//     $("#container").html(html);
-//   }
-// });
-// },
-// events: {
-//   "click .submit-book-edits": "editBook",
-//   "click .delete-book": "deleteBook"
-// },
-// editBook: function(event) {
-//   var that = this;
-//   var book = new Book();
-//   var bookInfo = {
-//     id: event.target.id,
-//     title: $("#edit-title").val(),
-//     author: $("#edit-author").val(),
-//     release_date: $("#edit-release").val(),
-//     image: $("#edit-image").val()
-//   };
-//   event.save(eventInfo, {
-//     success: function() {
-//       router.navigate("/", {
-//         trigger :true
-//       });
-//       that.undelegateEvents();
-//     }
-//   });
-// },
-// deleteEvent: function(event){
-//   var that = this;
-//           // we need to instantiate the event with the id
-//           var event = new Event({
-//           id: event.target.id
-//         });
-
-// event.destroy ({
-//   success: function() {
-//     router.navigate("/", {
-//       trigger: true
-//     });
-//     that.undelegateEvents();
-//       }
-//     });
-//   }
-// });
-
 
 
 //here we instantiate a new collection of Events
