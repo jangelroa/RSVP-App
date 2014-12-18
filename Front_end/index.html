@@ -138,9 +138,9 @@
 
 <!-- Find Events View -->
 
-<!-- <div data-role="page" id="find-events">
+<script type="x-handlebars-template" id="find-events-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h1>Find Your Event!</h1>
   </div>
 
@@ -149,7 +149,7 @@
            <ul data-role="listview"  data-inset="true">
 
               <li><input type="text" placeholder="Past your code here"/></li>
-              <li> <a href="#event_coded_page" data-role ="button" data-icon = "carat-r" data-iconpos = "right">Submit Code</a></li>
+              <li> <a href="#event_coded_page" data-role ="button" id = "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Code</a></li>
 
 
             </ul>
@@ -157,7 +157,7 @@
             <h3>Look for events with the following keywords (within 30 mile radius):</h3>
             <ul data-role="listview"  data-inset="true">
              <li><input type="text" placeholder="Separate your words with SPACES "/></li>
-              <li> <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
+              <li> <a href="#event-list" data-role ="button" id="submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
              </ul>
 
 
@@ -175,22 +175,22 @@
             </li>
 
             <li><input type="text" placeholder="Separate your words with SPACES "/></li>
-              <li> <a href="#event-list" data-role ="button" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
+              <li> <a href="#event-list" data-role ="button" id= "submit-find-event" data-icon = "carat-r" data-iconpos = "right">Submit Search for events</a></li>
              </ul>
     </div>
 
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar">
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div>
- -->
+</script>
+
 <!-- close Find Events View -->
 
 <!--Event List Page-->

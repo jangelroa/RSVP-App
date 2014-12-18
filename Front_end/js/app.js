@@ -10,12 +10,16 @@ $.ajaxSetup({
   }
 });
 
+//variables for Events 
 var eventListTemplate;
 // var editEventTemplate;
 var newEventTemplate;
 var individualEventTemplate;
 var pubIndividualEventTemplate;
+var findEventsTemplate; 
 
+
+//variables for Users
 var loginTemplate;
 // var editUseremplate;
 var newUserTemplate;
@@ -37,6 +41,9 @@ var userProfileTemplate;
 
   var newEventTemplateSource = $("#new-event-template").html();
   newEventTemplate = Handlebars.compile(newEventTemplateSource);
+
+  var findEventsTemplateSource = $("#find-events-template").html();
+  findEventsTemplate = Handlebars.compile(findEventsTemplateSource);
 })();
 
 //Compile all templates on document ready for Users
@@ -279,6 +286,22 @@ var NewEvent = Backbone.View.extend({
   }
 });
 
+// Set up a Find Events View
+var FindEvents = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = findEventsTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+  // key value pair of the event object
+  // "saveEvent" in quotes is backbone specific syntax for key value pairs
+  // events: {
+  //   "click #submit-find-event": ""
+  // }
+});
+
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
 //   el: "#container",
@@ -354,7 +377,7 @@ var Router = Backbone.Router.extend({
     "new":"new_event",
     "show_event/:id":"show_event",
     // "showPrivate/:id":"show_priv",
-    "findEvents":"find_events",
+    "find-events":"find_events",
     "add":"add_event",
     
     "invite/:id":"invite_guests",
@@ -408,7 +431,15 @@ var Router = Backbone.Router.extend({
     var newUserProfile = new UserProfile();
     newUserProfile.render(id);
     $("#container").trigger("create");
+  }, 
+
+  //Defining a route for Find Events 
+  find_events: function(){
+    var newFindEvents = new FindEvents();
+    newFindEvents.render();
+    $("#container").trigger("create");
   }
+
 });
 
 
