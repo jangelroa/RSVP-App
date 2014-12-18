@@ -19,6 +19,7 @@ var pubIndividualEventTemplate;
 var loginTemplate;
 // var editUseremplate;
 var newUserTemplate;
+var userProfileTemplate;
 
 //Compile all templates on document ready for Events
 
@@ -45,6 +46,10 @@ var newUserTemplate;
 
   var newUserTemplateSource = $("#new-user-template").html();
   newUserTemplate = Handlebars.compile(newUserTemplateSource);
+
+  var userProfileTemplateSource =$("#user-profile-template").html();
+  userProfileTemplate = Handlebars.compile(userProfileTemplateSource);
+
 })();
 
 // This section is all USERS related **************************************
@@ -148,50 +153,29 @@ var NewUserSignup = Backbone.View.extend({
     });
   }
 });
-  ////////// Defining a new_user function-- code from Angel//////
-//   new_user: function(event) {
-//     // $('#new_user').submit(function(event){
-//       event.preventDefault();
-//       $.ajax({
-//           url: "http://api.rsvp_app.dev/users/users",
-//           type: "POST",
-//           data: {
-//           user: {
-//               firstname: $('#new_user input[name=firstname]').val(),
-//               lastname: $('#new_user input[name=lastname]').val(),
-//               email: $('#new_user input[name=email]').val(),
-//               username: $('#new_user input[name=username]').val(),
-//               password: $('#new_user input[name=lasttname]').val(),
-//               picture_url: $('#new_user input[name=picture_url').val(),
-//             }
 
-
-//           } ,
-//           success: function(data) {
-//             // sessionStorage.setItem("auth_token", data.responseJSON.auth_token);
-//             // sessionStorage.setItem("user_id", data.responseJSON.id);
-//             router.navigate('allEvents', {trigger: true});
-//             // var html = loginTemplate({loginData: data});
-
-//             alert("New User Created");
-//             console.log(data);
-//             // WORKING
-
-//             // $("#container").html(html);
-//           },
-//           error: function(jqXHR, textStatus, errorThrown) {
-//             alert("Something went wrong");
-//             // console.log(errorThrown);
-
-//             // THE USERNAME AND PASSWORD DONT MATCH
-//           }
-//         });
-
-//     // });
-//   }
-
-// });
-
+// we are setting up an event "View", using a key value pair - Eventlist is to show all evetss
+var UserProfile = Backbone.View.extend({
+  el: "#container",
+  render: function() {
+    // var user_info = new User({
+    //   id: sessionStorage.getItem("user_id")
+    // });
+    //fetch is a function, through backbone, that accepts an object, uses the success error syntax
+      // var that = this;
+      // user_info.fetch({
+      //   success: function () {
+            var html = userProfileTemplate({
+              // userInfo: user_info
+          
+            });
+         
+            $("#container").html(html);
+            $("#container").trigger("create");
+      //   }
+      // });
+    }
+});
 
 // This section is all EVENTS related *************************************
 
@@ -382,7 +366,7 @@ var Router = Backbone.Router.extend({
 
     "editUser/:id":"edit-user",
     "newUser":"new_user",
-    "showProfile/:id":"show_profile"
+    "show_profile/:id":"show_profile"
 
   },
 
@@ -416,6 +400,13 @@ var Router = Backbone.Router.extend({
   new_event: function() {
     var newEvent = new NewEvent();
     newEvent.render();
+    $("#container").trigger("create");
+  }, 
+
+// Defining a route for User Profile 
+  show_profile: function(id) {
+    var newUserProfile = new UserProfile();
+    newUserProfile.render(id);
     $("#container").trigger("create");
   }
 });

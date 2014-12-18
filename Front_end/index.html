@@ -223,7 +223,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -351,7 +351,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -398,7 +398,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -490,7 +490,7 @@
         <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
         <li><a href="#new" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
@@ -593,22 +593,23 @@
 
 <!-- User Profile View -->
 
-<!-- <div data-role="page" id="user-profile">
+<script type="x-handlebars-template" id="user-profile-template">
+
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <a href="#allEvents" data-role="button" data-icon="back" data-theme="a">Back</a>
     <h2>Your User Profile </h2>
   </div>
   <div role="main" class="ui-content">
     <div class="ui-grid-a">
       <h3> User Information </h3>
-      <div class="ui-block-a"><strong>First Name</strong> and text inside will wrap.</div>
-      <div class="ui-block-b"><strong>Last Name</strong> and text inside will wrap.</div>
+      <div class="ui-block-a"><strong>First Name : </strong>Sandi </div>
+      <div class="ui-block-b"><strong>Last Name: </strong> Ma</div>
     </div>
   </div>
     <div role="main" class="ui-content">
       <div class="ui-grid-a">
-      <div class="ui-block-a"><strong>Email</strong> and text inside will wrap.</div>
-      <div class="ui-block-b"><strong>Picture</strong> and text inside will wrap.</div>
+      <div class="ui-block-a"><strong>Email: </strong> sandima@sandima.com</div>
+      <div class="ui-block-b"><strong>Picture: </strong> N/A</div>
     </div>
 
     <div>  <a href="#user-profile
@@ -642,7 +643,7 @@
         <ul id="event-list-items" data-role="listview">
             <li>
               <a href="#individual-event" data-icon="carat-r">
-                <img src="images/legs.jpg">
+                <img src="images/jason.jpg">
                 <h3> Name of Event </h3>
                 <p>Description text</p>
               </a>
@@ -650,7 +651,7 @@
 
             <li>
               <a href="#individual-event" data-icon="carat-r">
-                <img src="images/red_lips.jpg">
+                <img src="images/michael.jpg">
                 <h3> Name of Event </h3>
                 <p>Description text</p>
               </a>
@@ -663,14 +664,14 @@
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show_profile/1" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
- </div> -->
+ </script>
 <!-- close User Profile View  -->
 
 <!-- Invite Guests View -->
