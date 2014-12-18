@@ -233,44 +233,44 @@
 <!--/Event List Page-->
 
 <!--RSVP Guest List Page-->
-<!-- div data-role="page" id="rsvpd-guests">
+<script type="x-handlebars-template" id="rspvd-guests-template">
   <div data-role="header" data-theme="b">
-    <a href="#" data-role="button" data-icon="back" data-theme="a">Back</a>
-    <h1>RSVP'd Guest List</h1>
+    <a href="#edit" data-role="button" data-icon="back" data-theme="a">Back</a>
+    <h1>RSVPd Guest List</h1>
   </div>
   <div data-role="content">
     <ul id="event-list-items" data-role="listview">
       <li>
           <img src="images/billgates.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Bill Gates </h3>
       </li>
 
        <li>
           <img src="images/markzuckerberg.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Mark Zuckerberg </h3>
       </li>
        <li>
           <img src="images/pamelaanderson.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Pamela Anderson</h3>
       </li>
 
        <li>
           <img src="images/scarlettjo.jpg">
-          <h3> Name of User </h3>
+          <h3> Name: Scarlett Johannson </h3>
       </li>
     </ul>
   </div>
   <div data-role="footer" data-position="fixed" data-theme="b">
     <div data-role="navbar" >
       <ul>
-        <li><a href="#event-list" data-icon="bullets">Event List</a></li>
+        <li><a href="#allEvents" data-icon="bullets">Event List</a></li>
         <li><a href="#find-events" data-icon="search">Find Events</a></li>
-        <li><a href="#create-event" data-icon="plus">Create Event</a></li>
-        <li><a href="#user-profile" data-icon="user">Profile</a></li>
+        <li><a href="#new" data-icon="plus">Create Event</a></li>
+        <li><a href="#show-profile" data-icon="user">Profile</a></li>
       </ul>
     </div>
   </div>
-</div> -->
+</script>
 <!--close RSVP Guest List Page-->
 
 <!--Wants Invite List Page-->
@@ -571,7 +571,7 @@
 
       <a href="#invite" data-role="button" data-theme="b" data-icon = "carat-r" data-iconpos = "right" data-theme = "b">Invite Guests to this event</a>
 
-      <a href="#rsvpd-guests" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVPed for this event?</a>
+      <a href="#showRSVPs" data-role="button" data-theme="b" data-icon = "user" data-iconpos = "right" data-theme = "b">Who RSVPed for this event?</a>
 
       <a href="#wants-invite" data-role="button" data-theme="b" data-icon = "alert" data-iconpos = "right" data-theme = "b">Who wants to be invited?</a>
     </div>
@@ -624,16 +624,16 @@
       <li>
         <a href="#edit" data-icon="carat-r">
           <img src="images/legs.jpg">
-          <h3> Name of Event </h3>
-          <p>Description text</p>
+          <h3> Event: Naughty Xmas Party </h3>
+          <p>Description:  Guess what is going to happen...</p>
         </a>
       </li>
 
       <li>
         <a href="#edit" data-icon="carat-r">
           <img src="images/red_lips.jpg">
-          <h3> Name of Event </h3>
-          <p>Description text</p>
+          <h3> Event: Kiss Me Party </h3>
+          <p>Description:  It will BLOW your mind!</p>
         </a>
       </li>
       </ul>
@@ -644,16 +644,16 @@
             <li>
               <a href="#individual-event" data-icon="carat-r">
                 <img src="images/jason.jpg">
-                <h3> Name of Event </h3>
-                <p>Description text</p>
+                <h3> Event: Wrestling Party with Jason Statham </h3>
+                <p>Description: Hmmmmmm...</p>
               </a>
             </li>
 
             <li>
               <a href="#individual-event" data-icon="carat-r">
                 <img src="images/michael.jpg">
-                <h3> Name of Event </h3>
-                <p>Description text</p>
+                <h3> Event:  Making cake with Michael Fassbender</h3>
+                <p>Description: Yummmmmy..</p>
               </a>
             </li>
             </ul>

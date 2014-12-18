@@ -19,6 +19,7 @@ var pubIndividualEventTemplate;
 var findEventsTemplate; 
 var messageHostTemplate;
 var inviteGuestsTemplate;
+var showRsvpTemplate;
 
 
 //variables for Users
@@ -53,6 +54,9 @@ var userProfileTemplate;
 
   var inviteGuestsTemplateSource = $("#invite-guests-template").html();
   inviteGuestsTemplate = Handlebars.compile(inviteGuestsTemplateSource);
+
+  var showRsvpTemplateSource = $("#rspvd-guests-template").html();
+  showRsvpTemplate = Handlebars.compile(showRsvpTemplateSource);
 
 })();
 
@@ -347,6 +351,16 @@ var InviteGuests = Backbone.View.extend({
   }
 });
 
+var ShowRsvp = Backbone.View.extend({
+  el: "#container",
+  render: function (){
+    var html = showRsvpTemplate();
+
+    $("#container").html(html);
+    $("#container").trigger("create");
+  }
+});
+
 
 // //Set up edit Book View
 // var EditBook = Backbone.View.extend({
@@ -432,7 +446,7 @@ var Router = Backbone.Router.extend({
     
     // "invite/:id":"invite_guests",
     "invite":"invite_guests",
-    "showRSVP/:id":"show_rsvps",
+    "showRSVPs":"show_rsvps",
 
     // "login":"login",
     "login_submit": "login_submit",
@@ -510,6 +524,13 @@ var Router = Backbone.Router.extend({
   invite_guests: function(){
     var newInviteGuests = new InviteGuests();
     newInviteGuests.render();
+    $("#container").trigger("create");
+  }, 
+
+  //Defining a route to Show RSVPS
+  show_rsvps: function(){
+    var newShowRsvp = new ShowRsvp();
+    newShowRsvp.render();
     $("#container").trigger("create");
   }
 
